@@ -1,4 +1,4 @@
-package com.albertcid.cardsgame.domain
+package com.albertcid.cardsgame.domain.model
 
 enum class CardValue(value: Int) {
     TWO(1),
