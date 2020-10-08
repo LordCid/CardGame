@@ -43,14 +43,15 @@ dependencies {
 
     //Architecture Components
     implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-beta01'
 
     //Testing
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.mockito:mockito-core:3.0.0'
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
     testImplementation 'android.arch.core:core-testing:1.1.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //Dagger
     implementation "com.google.dagger:dagger:2.28"
@@ -62,8 +63,13 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:2.24"
 
 
+
     //Glide
     implementation "com.github.bumptech.glide:glide:4.11.0"
+
+    //DateTime
+    implementation 'joda-time:joda-time:2.10.6'
+    implementation "com.github.debop:koda-time:1.2.1"
 
     //retrofit
 //    implementation "com.squareup.okhttp3:mockwebserver:4.3.1"
