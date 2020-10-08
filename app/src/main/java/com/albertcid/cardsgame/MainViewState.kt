@@ -1,4 +1,4 @@
 package com.albertcid.cardsgame
 
-class MainViewSatet {
+sealed class MainViewState {
 }
