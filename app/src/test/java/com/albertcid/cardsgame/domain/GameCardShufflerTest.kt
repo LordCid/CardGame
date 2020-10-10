@@ -11,9 +11,9 @@ import org.junit.Assert.*
 import org.junit.Ignore
 import org.junit.Test
 
-class GameDealerTest {
+class GameCardShufflerTest {
 
-    private lateinit var sut: GameDealer
+    private lateinit var sut: GameCardShuffler
 
     private val cardDeckBuilder = mock<CardDeckBuilder>()
 
@@ -93,12 +93,12 @@ class GameDealerTest {
 
     private fun givenFullCardDeckToAssign() {
         given(cardDeckBuilder.build()).willReturn(spadesSuit + diamondsSuit + heartsSuit + clubsSuit)
-        sut = GameDealerImpl(cardDeckBuilder, playerOne, playerTwo)
+        sut = GameCardShufflerImpl(cardDeckBuilder, playerOne, playerTwo)
     }
 
     private fun givenHalfCardDeckToAssign() {
         given(cardDeckBuilder.build()).willReturn(spadesSuit + diamondsSuit)
-        sut = GameDealerImpl(cardDeckBuilder, playerOne, playerTwo)
+        sut = GameCardShufflerImpl(cardDeckBuilder, playerOne, playerTwo)
     }
 
 }

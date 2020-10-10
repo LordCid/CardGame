@@ -3,11 +3,11 @@ package com.albertcid.cardsgame.domain
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 
-class GameDealerImpl(
+class GameCardShufflerImpl(
     cardDeckBuilder: CardDeckBuilder,
     private val playerOne: Player,
     private val playerTwo: Player
-) : GameDealer {
+) : GameCardShuffler {
     private var cardDeck : MutableSet<Card> = cardDeckBuilder.build() as MutableSet<Card>
 
     private val totalCardsForPlayer = 26
