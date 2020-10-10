@@ -4,15 +4,15 @@ import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
 
-class CardDeckFactoryImpl : CardDeckFactory {
-    override fun buildCardDeck(): List<Card> {
+class CardDeckBuilderImpl : CardDeckBuilder {
+    override fun build(): Set<Card> {
         return getSuitCards(CardSuit.SPADES) +
                 getSuitCards(CardSuit.DIAMONDS) +
                 getSuitCards(CardSuit.HEARTS) +
                 getSuitCards(CardSuit.CLUBS)
     }
 
-    private fun getSuitCards(suit: CardSuit) = listOf(
+    private fun getSuitCards(suit: CardSuit) = setOf(
         Card(CardValue.TWO, suit),
         Card(CardValue.THREE, suit),
         Card(CardValue.FOUR, suit),
