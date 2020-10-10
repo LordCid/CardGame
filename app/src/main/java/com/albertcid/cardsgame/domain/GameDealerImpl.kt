@@ -4,7 +4,7 @@ import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 
 class GameDealerImpl(
-    private val cardDeckBuilder: CardDeckBuilder,
+    cardDeckBuilder: CardDeckBuilder,
     private val playerOne: Player,
     private val playerTwo: Player
 ) : GameDealer {
@@ -14,7 +14,7 @@ class GameDealerImpl(
     override val suitPriority =
         listOf(CardSuit.SPADES, CardSuit.DIAMONDS, CardSuit.HEARTS, CardSuit.CLUBS).shuffled()
 
-    override fun assingCards(): MutableSet<Card> {
+    override fun assignCards(): MutableSet<Card> {
         cardDeck.shuffled()
         return cardDeck.chunked(totalCardsForPlayer)[0].toMutableSet()
     }

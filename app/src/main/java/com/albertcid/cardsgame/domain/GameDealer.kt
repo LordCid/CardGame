@@ -5,6 +5,6 @@ import com.albertcid.cardsgame.domain.model.CardSuit
 
 interface GameDealer {
     val suitPriority: List<CardSuit>
-    fun assingCards(): MutableSet<Card>
+    fun assignCards(): MutableSet<Card>
     fun assignCardsToPlayer()
 }

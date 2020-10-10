@@ -6,7 +6,6 @@ import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Before
 
 import org.junit.Assert.*
 import org.junit.Ignore
@@ -29,7 +28,7 @@ class GameDealerTest {
         givenFullCardDeckToAssign()
         val totalCardSizeEachPlayer = 26
 
-        val actual = sut.assingCards()
+        val actual = sut.assignCards()
 
         assertEquals(totalCardSizeEachPlayer, actual.size)
     }
@@ -39,7 +38,7 @@ class GameDealerTest {
         givenHalfCardDeckToAssign()
         val totalCardSizeEachPlayer = 26
 
-        val actual = sut.assingCards()
+        val actual = sut.assignCards()
 
         assertEquals(totalCardSizeEachPlayer, actual.size)
     }
@@ -49,7 +48,7 @@ class GameDealerTest {
         givenFullCardDeckToAssign()
         val expected = getFullCardDeck().toMutableSet()
 
-        val actual = sut.assingCards()
+        val actual = sut.assignCards()
         expected.removeAll( actual)
 
         assertFalse(expected.contains(actual))
@@ -61,7 +60,7 @@ class GameDealerTest {
         givenHalfCardDeckToAssign()
         val expected = getFullCardDeck().toMutableSet()
 
-        val actual = sut.assingCards()
+        val actual = sut.assignCards()
         expected.removeAll( actual)
 
         assertFalse(expected.contains(actual))
