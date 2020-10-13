@@ -40,7 +40,7 @@ class GameCardShufflerTest {
     @Test
     fun `Given full cards deck, should remove the cards from them when assing to Player`() {
         givenFullCardDeckToAssign()
-        val expected = getFullCardDeck().toMutableSet()
+        val expected = (spadesSuit + diamondsSuit + heartsSuit + clubsSuit).toMutableSet()
 
         val actual = sut.assignCards()
         expected.removeAll( actual)
@@ -52,7 +52,7 @@ class GameCardShufflerTest {
     @Test
     fun `Given half cards deck, should remove the cards from them when assing to Player`() {
         givenHalfCardDeckToAssign()
-        val expected = getFullCardDeck().toMutableSet()
+        val expected = (spadesSuit + diamondsSuit + heartsSuit + clubsSuit).toMutableSet()
 
         val actual = sut.assignCards()
         expected.removeAll( actual)

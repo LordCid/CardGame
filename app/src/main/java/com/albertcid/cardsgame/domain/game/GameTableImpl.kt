@@ -1,40 +1,72 @@
 package com.albertcid.cardsgame.domain.game
 
+import com.albertcid.cardsgame.GameStatus
+import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 
 class GameTableImpl(
-    val playerOne: Player,
-    val playerTwo: Player,
+    override val userPlayer: Player,
+    override val opponentPlayer: Player,
     private val gameCardShuffler: GameCardShuffler
 ) : GameTable {
     override var round = 0
     private var suitPriority = listOf<CardSuit>()
+    private lateinit var cardOne : Card
+    private lateinit var cardTwo : Card
+
+    private var isUserWinnerOfRound = false
+
+    override fun getGameStatus(): GameStatus {
+        return GameStatus(
+            currentRound = round,
+            isUserWinnerOfRound = isUserWinnerOfRound,
+            userCardPlayed = cardOne,
+            opponentCardPlayed = cardTwo,
+            totalUsersCardPile = userPlayer.cardPile.size,
+            totalUsersDiscardPile = userPlayer.discardPile.size,
+            totalOpponentDiscardPile = opponentPlayer.discardPile.size
+        )
+
+    }
+
 
     override fun startGame() {
         round = 0
         suitPriority = gameCardShuffler.generateSuitPriority()
-        playerOne.cardPile.addAll(gameCardShuffler.assignCards())
-        playerTwo.cardPile.addAll(gameCardShuffler.assignCards())
+        assignCardsToPlayers()
+        clearDiscardPiles()
+    }
+
+    private fun assignCardsToPlayers() {
+        userPlayer.cardPile.addAll(gameCardShuffler.assignCards())
+        opponentPlayer.cardPile.addAll(gameCardShuffler.assignCards())
+    }
+
+    private fun clearDiscardPiles() {
+        userPlayer.discardPile.clear()
+        opponentPlayer.discardPile.clear()
     }
 
     override fun playRound() {
-        val cardOne = playerOne.playCard()
-        val cardTwo = playerTwo.playCard()
+        cardOne = userPlayer.playCard()
+        cardTwo = opponentPlayer.playCard()
+        round += 1
 
         if (cardOne.value == cardTwo.value) {
             if (suitPriority.indexOf(cardOne.suit) < suitPriority.indexOf(cardTwo.suit)) {
-                playerOne.winRound(cardOne, cardTwo)
+                userPlayer.winRound(cardOne, cardTwo)
+                isUserWinnerOfRound = true
             } else {
-                playerTwo.winRound(cardOne, cardTwo)
+                opponentPlayer.winRound(cardOne, cardTwo)
+                isUserWinnerOfRound = false
             }
 
         } else if (cardOne.value > cardTwo.value) {
-            playerOne.winRound(cardOne, cardTwo)
+            userPlayer.winRound(cardOne, cardTwo)
+            isUserWinnerOfRound = true
         } else {
-            playerTwo.winRound(cardOne, cardTwo)
+            opponentPlayer.winRound(cardOne, cardTwo)
+            isUserWinnerOfRound = false
         }
-
-
-        round += 1
     }
 }
