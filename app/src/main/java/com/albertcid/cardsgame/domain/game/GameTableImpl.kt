@@ -1,4 +1,6 @@
-package com.albertcid.cardsgame.domain
+package com.albertcid.cardsgame.domain.game
+
+import com.albertcid.cardsgame.domain.model.CardSuit
 
 class GameTableImpl(
     val playerOne: Player,
@@ -6,12 +8,18 @@ class GameTableImpl(
     private val gameCardShuffler: GameCardShuffler
 ) : GameTable {
     override var round = 0
+    private var suitPriority = listOf<CardSuit>()
 
+    override fun startGame() {
+        round = 0
+        suitPriority = gameCardShuffler.generateSuitPriority()
+        playerOne.cardPile.addAll(gameCardShuffler.assignCards())
+        playerTwo.cardPile.addAll(gameCardShuffler.assignCards())
+    }
 
     override fun playRound() {
         val cardOne = playerOne.playCard()
         val cardTwo = playerTwo.playCard()
-        val suitPriority = gameCardShuffler.suitPriority
 
         if (cardOne.value == cardTwo.value) {
             if (suitPriority.indexOf(cardOne.suit) < suitPriority.indexOf(cardTwo.suit)) {

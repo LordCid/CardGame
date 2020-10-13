@@ -1,10 +1,9 @@
-package com.albertcid.cardsgame.domain
+package com.albertcid.cardsgame.domain.game
 
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 
 interface GameCardShuffler {
-    val suitPriority: List<CardSuit>
+    fun generateSuitPriority(): List<CardSuit>
     fun assignCards(): MutableSet<Card>
-    fun assignCardsToPlayer()
 }
