@@ -2,7 +2,7 @@ package com.albertcid.cardsgame.domain.game
 
 import com.albertcid.cardsgame.domain.model.Card
 
-class OponentPlayer : Player {
+class PlayerImpl : Player {
     override val discardPile = mutableSetOf<Card>()
     override val cardPile = mutableListOf<Card>()
 

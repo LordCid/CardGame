@@ -1,7 +1,7 @@
 package com.albertcid.cardsgame.domain
 
 import com.albertcid.cardsgame.domain.game.Player
-import com.albertcid.cardsgame.domain.game.OponentPlayer
+import com.albertcid.cardsgame.domain.game.PlayerImpl
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
@@ -16,7 +16,7 @@ class PlayerTest {
 
     @Before
     fun setUp() {
-        sut = OponentPlayer()
+        sut = PlayerImpl()
     }
 
     @Test
