@@ -1,7 +1,8 @@
-package com.albertcid.cardsgame
+package com.albertcid.cardsgame.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.albertcid.cardsgame.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

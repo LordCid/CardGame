@@ -1,4 +1,4 @@
-package com.albertcid.cardsgame
+package com.albertcid.cardsgame.presentation
 
 import androidx.lifecycle.LiveData
 

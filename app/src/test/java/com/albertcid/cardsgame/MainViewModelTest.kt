@@ -1,8 +1,7 @@
 package com.albertcid.cardsgame
 
+import com.albertcid.cardsgame.presentation.MainViewModelImpl
 import org.junit.Before
-
-import org.junit.Assert.*
 
 class MainViewModelTest {
 
