@@ -4,5 +4,6 @@ import androidx.lifecycle.LiveData
 
 interface MainViewModel {
     val viewState: LiveData<MainViewState>
-    fun getTransactions()
+    fun restartGame()
+    fun playRound()
 }
