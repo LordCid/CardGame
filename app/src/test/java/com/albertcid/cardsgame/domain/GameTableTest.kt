@@ -1,6 +1,7 @@
 package com.albertcid.cardsgame.domain
 
 import com.albertcid.cardsgame.GameStatus
+import com.albertcid.cardsgame.diamondsSuit
 import com.albertcid.cardsgame.domain.game.GameCardShuffler
 import com.albertcid.cardsgame.domain.game.GameTable
 import com.albertcid.cardsgame.domain.game.GameTableImpl
@@ -8,6 +9,8 @@ import com.albertcid.cardsgame.domain.game.Player
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
+import com.albertcid.cardsgame.randomFullUserCardDeck
+import com.albertcid.cardsgame.spadesSuit
 import com.nhaarman.mockitokotlin2.*
 import org.junit.Before
 

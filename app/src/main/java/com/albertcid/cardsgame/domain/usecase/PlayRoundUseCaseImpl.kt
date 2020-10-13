@@ -9,5 +9,8 @@ import com.albertcid.cardsgame.domain.model.CardValue
 class PlayRoundUseCaseImpl(
     private val gameTable: GameTable
 ) : PlayRoundUseCase {
-    override fun invoke()= gameTable.getGameStatus()
+    override fun invoke(): GameStatus{
+        gameTable.playRound()
+        return gameTable.getGameStatus()
+    }
 }

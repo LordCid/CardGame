@@ -1,9 +1,13 @@
 package com.albertcid.cardsgame.domain
 
 
+import com.albertcid.cardsgame.clubsSuit
+import com.albertcid.cardsgame.diamondsSuit
 import com.albertcid.cardsgame.domain.game.CardDeckBuilder
 import com.albertcid.cardsgame.domain.game.GameCardShuffler
 import com.albertcid.cardsgame.domain.game.GameCardShufflerImpl
+import com.albertcid.cardsgame.heartsSuit
+import com.albertcid.cardsgame.spadesSuit
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 
