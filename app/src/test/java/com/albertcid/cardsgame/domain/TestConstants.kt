@@ -69,3 +69,31 @@ val clubsSuit = mutableSetOf(
     Card(CardValue.KING, CardSuit.CLUBS),
     Card(CardValue.ACE, CardSuit.CLUBS)
 )
+
+val randomFullPlayersDeck = mutableSetOf(
+    Card(CardValue.TWO, CardSuit.CLUBS),
+    Card(CardValue.THREE, CardSuit.CLUBS),
+    Card(CardValue.FOUR, CardSuit.CLUBS),
+    Card(CardValue.FIVE, CardSuit.CLUBS),
+    Card(CardValue.SIX, CardSuit.CLUBS),
+    Card(CardValue.SEVEN, CardSuit.CLUBS),
+    Card(CardValue.EIGHT, CardSuit.CLUBS),
+    Card(CardValue.NINE, CardSuit.HEARTS),
+    Card(CardValue.TEN, CardSuit.HEARTS),
+    Card(CardValue.JOCKEY, CardSuit.HEARTS),
+    Card(CardValue.QUEEN, CardSuit.HEARTS),
+    Card(CardValue.KING, CardSuit.HEARTS),
+    Card(CardValue.ACE, CardSuit.HEARTS),
+    Card(CardValue.SEVEN, CardSuit.DIAMONDS),
+    Card(CardValue.EIGHT, CardSuit.DIAMONDS),
+    Card(CardValue.NINE, CardSuit.DIAMONDS),
+    Card(CardValue.TEN, CardSuit.DIAMONDS),
+    Card(CardValue.JOCKEY, CardSuit.DIAMONDS),
+    Card(CardValue.QUEEN, CardSuit.DIAMONDS),
+    Card(CardValue.KING, CardSuit.DIAMONDS),
+    Card(CardValue.ACE, CardSuit.DIAMONDS),
+    Card(CardValue.TWO, CardSuit.SPADES),
+    Card(CardValue.THREE, CardSuit.SPADES),
+    Card(CardValue.FOUR, CardSuit.SPADES),
+    Card(CardValue.FIVE, CardSuit.SPADES)
+)

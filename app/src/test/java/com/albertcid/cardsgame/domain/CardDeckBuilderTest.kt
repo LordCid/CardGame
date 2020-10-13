@@ -1,5 +1,7 @@
 package com.albertcid.cardsgame.domain
 
+import com.albertcid.cardsgame.domain.game.CardDeckBuilder
+import com.albertcid.cardsgame.domain.game.CardDeckBuilderImpl
 import org.junit.Before
 
 import org.junit.Test

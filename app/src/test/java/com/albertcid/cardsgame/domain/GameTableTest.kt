@@ -1,5 +1,9 @@
 package com.albertcid.cardsgame.domain
 
+import com.albertcid.cardsgame.domain.game.GameCardShuffler
+import com.albertcid.cardsgame.domain.game.GameTable
+import com.albertcid.cardsgame.domain.game.GameTableImpl
+import com.albertcid.cardsgame.domain.game.Player
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
@@ -14,19 +18,42 @@ class GameTableTest {
     private lateinit var sut: GameTable
     private val playerOne = mock<Player>()
     private val playerTwo = mock<Player>()
-    private val gameStarter = mock<GameCardShuffler>()
+    private val gameCardShuffler = mock<GameCardShuffler>()
 
     @Before
     fun setUp() {
-        sut = GameTableImpl(playerOne, playerTwo, gameStarter)
+        sut = GameTableImpl(playerOne, playerTwo, gameCardShuffler)
     }
 
     @Test
-    fun `Given game started, When round played, round counter is increased by one`() {
+    fun `When start game round is set to zero`() {
+        val someCards = (spadesSuit + diamondsSuit).toMutableSet()
+        given(gameCardShuffler.assignCards()).willReturn(someCards)
+        sut.round = 3
+
+        sut.startGame()
+
+        assertTrue(sut.round == 0)
+    }
+
+    @Test
+    fun `When start game each player discard pile is set empty and should receive cards to play`() {
+        val someCards = randomFullPlayersDeck
+        given(gameCardShuffler.assignCards()).willReturn(someCards)
+        given(playerOne.cardPile).willReturn(spy(mutableListOf()))
+        given(playerTwo.cardPile).willReturn(spy(mutableListOf()))
+
+        sut.startGame()
+
+        verify(playerOne.cardPile).addAll(someCards)
+        verify(playerTwo.cardPile).addAll(someCards)
+    }
+
+    @Test
+    fun `Given round 0, When play round, round counter is increased by one`() {
         val expected = 1
         val randomCard = Card(CardValue.FOUR, CardSuit.SPADES)
-        given(playerOne.playCard()).willReturn(randomCard)
-        given(playerTwo.playCard()).willReturn(randomCard)
+        givenPlayedRound(randomCard, randomCard)
 
         sut.playRound()
 
@@ -34,8 +61,9 @@ class GameTableTest {
     }
 
     @Test
-    fun `Given game second round, When round played, round counter is increased by one`() {
+    fun `Given round 2, When play round, round counter is increased by one`() {
         val expected = 2
+        sut.startGame()
         sut.round = 1
         val randomCard = Card(CardValue.FOUR, CardSuit.SPADES)
         given(playerOne.playCard()).willReturn(randomCard)
@@ -50,8 +78,7 @@ class GameTableTest {
     fun `Given player ONE card higher than player TWO, player ONE gains the cards`() {
         val cardOne = Card(CardValue.FIVE, CardSuit.HEARTS)
         val cardTwo = Card(CardValue.TWO, CardSuit.SPADES)
-        given(playerOne.playCard()).willReturn(cardOne)
-        given(playerTwo.playCard()).willReturn(cardTwo)
+        givenPlayedRound(cardOne, cardTwo)
 
         sut.playRound()
 
@@ -63,8 +90,7 @@ class GameTableTest {
     fun `Given player TWO card higher than player ONE, player TWO gains the cards`() {
         val cardOne = Card(CardValue.JOCKEY, CardSuit.DIAMONDS)
         val cardTwo = Card(CardValue.ACE, CardSuit.SPADES)
-        given(playerOne.playCard()).willReturn(cardOne)
-        given(playerTwo.playCard()).willReturn(cardTwo)
+        givenPlayedRound(cardOne, cardTwo)
 
         sut.playRound()
 
@@ -74,18 +100,26 @@ class GameTableTest {
 
     @Test
     fun `Given player ONE card equal to player TWO card but suit most higher, player ONE wins`() {
-        given(gameStarter.suitPriority).willReturn(
-            listOf( CardSuit.SPADES, CardSuit.DIAMONDS, CardSuit.HEARTS, CardSuit.CLUBS)
+        given(gameCardShuffler.generateSuitPriority()).willReturn(
+            listOf(CardSuit.SPADES, CardSuit.DIAMONDS, CardSuit.HEARTS, CardSuit.CLUBS)
         )
         val cardOne = Card(CardValue.QUEEN, CardSuit.SPADES)
         val cardTwo = Card(CardValue.QUEEN, CardSuit.HEARTS)
-        given(playerOne.playCard()).willReturn(cardOne)
-        given(playerTwo.playCard()).willReturn(cardTwo)
+        givenPlayedRound(cardOne, cardTwo)
 
         sut.playRound()
 
         verify(playerOne, times(1)).winRound(cardOne, cardTwo)
         verify(playerTwo, never()).winRound(any())
+    }
+
+    private fun givenPlayedRound(
+        cardOne: Card,
+        cardTwo: Card
+    ) {
+        given(playerOne.playCard()).willReturn(cardOne)
+        given(playerTwo.playCard()).willReturn(cardTwo)
+        sut.startGame()
     }
 
 }

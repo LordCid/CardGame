@@ -1,14 +1,13 @@
 package com.albertcid.cardsgame.domain
 
 
-import com.albertcid.cardsgame.domain.model.Card
-import com.nhaarman.mockitokotlin2.argumentCaptor
+import com.albertcid.cardsgame.domain.game.CardDeckBuilder
+import com.albertcid.cardsgame.domain.game.GameCardShuffler
+import com.albertcid.cardsgame.domain.game.GameCardShufflerImpl
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
 
 import org.junit.Assert.*
-import org.junit.Ignore
 import org.junit.Test
 
 class GameCardShufflerTest {
@@ -16,11 +15,6 @@ class GameCardShufflerTest {
     private lateinit var sut: GameCardShuffler
 
     private val cardDeckBuilder = mock<CardDeckBuilder>()
-
-    private val playerOne = mock<Player>()
-    private val playerTwo = mock<Player>()
-
-    private val captorCards = argumentCaptor<MutableSet<Card>>()
 
 
     @Test
@@ -66,39 +60,14 @@ class GameCardShufflerTest {
         assertFalse(expected.contains(actual))
     }
 
-
-    @Ignore
-    @Test
-    fun `Should assign same numbers of cards to each player`() {
-        val totalCardSizeEachPlayer = 26
-
-        sut.assignCardsToPlayer()
-
-        verify(playerOne).recibeCardsToPlay(captorCards.capture())
-        verify(playerTwo).recibeCardsToPlay(captorCards.capture())
-        assertEquals(totalCardSizeEachPlayer, captorCards.firstValue.size)
-        assertEquals(totalCardSizeEachPlayer, captorCards.secondValue.size)
-
-    }
-
-    @Ignore
-    @Test
-    fun `Should assign different of cards to each player`() {
-        sut.assignCardsToPlayer()
-
-        verify(playerOne).recibeCardsToPlay(captorCards.capture())
-        verify(playerTwo).recibeCardsToPlay(captorCards.capture())
-        assertNotEquals(captorCards.firstValue.toList(), captorCards.secondValue.toList())
-    }
-
     private fun givenFullCardDeckToAssign() {
         given(cardDeckBuilder.build()).willReturn(spadesSuit + diamondsSuit + heartsSuit + clubsSuit)
-        sut = GameCardShufflerImpl(cardDeckBuilder, playerOne, playerTwo)
+        sut = GameCardShufflerImpl(cardDeckBuilder)
     }
 
     private fun givenHalfCardDeckToAssign() {
         given(cardDeckBuilder.build()).willReturn(spadesSuit + diamondsSuit)
-        sut = GameCardShufflerImpl(cardDeckBuilder, playerOne, playerTwo)
+        sut = GameCardShufflerImpl(cardDeckBuilder)
     }
 
 }
