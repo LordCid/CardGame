@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CardsGame</string>
+    <string name="restart">Restart</string>
+    <string name="draw_card">Draw card</string>
 </resources>
