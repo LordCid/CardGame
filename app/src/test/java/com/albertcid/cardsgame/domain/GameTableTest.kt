@@ -1,6 +1,5 @@
 package com.albertcid.cardsgame.domain
 
-import com.albertcid.cardsgame.GameStatus
 import com.albertcid.cardsgame.diamondsSuit
 import com.albertcid.cardsgame.domain.game.GameCardShuffler
 import com.albertcid.cardsgame.domain.game.GameTable

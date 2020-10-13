@@ -1,9 +1,7 @@
 package com.albertcid.cardsgame.domain.usecase
 
-import com.albertcid.cardsgame.*
+import com.albertcid.cardsgame.domain.GameStatus
 import com.albertcid.cardsgame.domain.game.GameTable
-import com.albertcid.cardsgame.domain.game.Player
-import com.albertcid.cardsgame.domain.game.PlayerImpl
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue

@@ -1,6 +1,6 @@
 package com.albertcid.cardsgame.domain.game
 
-import com.albertcid.cardsgame.GameStatus
+import com.albertcid.cardsgame.domain.GameStatus
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 
