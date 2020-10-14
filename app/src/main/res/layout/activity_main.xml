@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toStartOf="@id/round_number_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Round:" />
+            android:text="@string/round" />
 
         <TextView
             android:id="@+id/round_number_tv"
@@ -61,7 +61,7 @@
             app:layout_constraintEnd_toStartOf="@id/discardpile_opponents_value_tv"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Opponents Discard Pile:" />
+            android:text="@string/opponents_discard_pile" />
 
         <TextView
             android:id="@+id/discardpile_opponents_value_tv"
@@ -87,7 +87,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/opponents_area"
-        tools:text="You Win!!!" />
+        android:text="@string/user_winner" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cards_area"
@@ -119,7 +119,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="king of spades" />
+            tools:text="King of spades" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,4 +2,8 @@
     <string name="app_name">CardsGame</string>
     <string name="restart">Restart</string>
     <string name="draw_card">Draw card</string>
+    <string name="round">Round:</string>
+    <string name="opponents_discard_pile">Opponents Discard Pile:</string>
+    <string name="user_winner">You win the round!</string>
+    <string name="user_lose">You lose the round</string>
 </resources>
