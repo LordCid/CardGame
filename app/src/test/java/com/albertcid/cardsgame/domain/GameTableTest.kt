@@ -1,7 +1,7 @@
 package com.albertcid.cardsgame.domain
 
 import com.albertcid.cardsgame.diamondsSuit
-import com.albertcid.cardsgame.domain.game.GameCardShuffler
+import com.albertcid.cardsgame.domain.game.CardShuffler
 import com.albertcid.cardsgame.domain.game.GameTable
 import com.albertcid.cardsgame.domain.game.GameTableImpl
 import com.albertcid.cardsgame.domain.game.Player
@@ -22,7 +22,7 @@ class GameTableTest {
     private lateinit var sut: GameTable
     private val userPlayer = mock<Player>()
     private val opponentPlayer = mock<Player>()
-    private val gameCardShuffler = mock<GameCardShuffler>()
+    private val gameCardShuffler = mock<CardShuffler>()
 
     @Before
     fun setUp() {

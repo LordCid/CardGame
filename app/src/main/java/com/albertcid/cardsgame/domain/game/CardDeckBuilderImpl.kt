@@ -3,8 +3,11 @@ package com.albertcid.cardsgame.domain.game
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
+import javax.inject.Inject
 
-class CardDeckBuilderImpl : CardDeckBuilder {
+class CardDeckBuilderImpl
+//@Inject constructor()
+    : CardDeckBuilder {
     override fun build(): Set<Card> {
         return getSuitCards(CardSuit.SPADES) +
                 getSuitCards(CardSuit.DIAMONDS) +

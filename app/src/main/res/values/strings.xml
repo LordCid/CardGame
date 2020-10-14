@@ -6,4 +6,6 @@
     <string name="opponents_discard_pile">Opponents Discard Pile:</string>
     <string name="user_winner">You win the round!</string>
     <string name="user_lose">You lose the round</string>
+    <string name="discard_pile">Discard Pile:</string>
+    <string name="pile_of_cards">Pile of cards:</string>
 </resources>

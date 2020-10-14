@@ -4,8 +4,8 @@ package com.albertcid.cardsgame.domain
 import com.albertcid.cardsgame.clubsSuit
 import com.albertcid.cardsgame.diamondsSuit
 import com.albertcid.cardsgame.domain.game.CardDeckBuilder
-import com.albertcid.cardsgame.domain.game.GameCardShuffler
-import com.albertcid.cardsgame.domain.game.GameCardShufflerImpl
+import com.albertcid.cardsgame.domain.game.CardShuffler
+import com.albertcid.cardsgame.domain.game.CardShufflerImpl
 import com.albertcid.cardsgame.heartsSuit
 import com.albertcid.cardsgame.spadesSuit
 import com.nhaarman.mockitokotlin2.given
@@ -14,9 +14,9 @@ import com.nhaarman.mockitokotlin2.mock
 import org.junit.Assert.*
 import org.junit.Test
 
-class GameCardShufflerTest {
+class CardShufflerTest {
 
-    private lateinit var sut: GameCardShuffler
+    private lateinit var sut: CardShuffler
 
     private val cardDeckBuilder = mock<CardDeckBuilder>()
 
@@ -66,12 +66,12 @@ class GameCardShufflerTest {
 
     private fun givenFullCardDeckToAssign() {
         given(cardDeckBuilder.build()).willReturn(spadesSuit + diamondsSuit + heartsSuit + clubsSuit)
-        sut = GameCardShufflerImpl(cardDeckBuilder)
+        sut = CardShufflerImpl(cardDeckBuilder)
     }
 
     private fun givenHalfCardDeckToAssign() {
         given(cardDeckBuilder.build()).willReturn(spadesSuit + diamondsSuit)
-        sut = GameCardShufflerImpl(cardDeckBuilder)
+        sut = CardShufflerImpl(cardDeckBuilder)
     }
 
 }

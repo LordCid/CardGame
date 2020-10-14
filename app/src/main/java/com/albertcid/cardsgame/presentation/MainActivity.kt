@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun actionButtons(){
-        restart_button.setOnClickListener { viewModel.restartGame() }
-        play_card_button.setOnClickListener { viewModel.playRound() }
+        restart_btn.setOnClickListener { viewModel.restartGame() }
+        play_btn.setOnClickListener { viewModel.playRound() }
     }
 
     private fun setViewModel() {
@@ -40,10 +40,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUI(screenState: MainViewState) {
         with((screenState as MainViewState.ShowGameStatus).gameStatus) {
-            round_number_tv.text = currentRound.toString()
-            pilecards_value_tv.text = totalOpponentDiscardPile.toString()
-            discardpile_opponents_value_tv.text = totalOpponentDiscardPile.toString()
-            discardpile_value_tv.text = totalUsersDiscardPile.toString()
+            round_val_tv.text = currentRound.toString()
+            pile_val_tv.text = totalOpponentDiscardPile.toString()
+            dis_op_val_tv.text = totalOpponentDiscardPile.toString()
+            discard_val_tv.text = totalUsersDiscardPile.toString()
             opponents_card_tv.text = opponentCardPlayed.toLiteral()
             users_card_tv.text = userCardPlayed.toLiteral()
             winner_tv.text = if (isUserWinnerOfRound) {

@@ -3,12 +3,15 @@ package com.albertcid.cardsgame.domain.game
 import com.albertcid.cardsgame.domain.GameStatus
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
+import javax.inject.Inject
 
-class GameTableImpl(
+class GameTableImpl
+//@Inject constructor
+    (
     override val userPlayer: Player,
-    override val opponentPlayer: Player,
-    private val gameCardShuffler: GameCardShuffler
+    private val cardShuffler: CardShuffler
 ) : GameTable {
+    override val opponentPlayer = PlayerImpl()
     override var round = 0
     private var suitPriority = listOf<CardSuit>()
     private lateinit var cardOne : Card
@@ -32,14 +35,14 @@ class GameTableImpl(
 
     override fun startGame() {
         round = 0
-        suitPriority = gameCardShuffler.generateSuitPriority()
+        suitPriority = cardShuffler.generateSuitPriority()
         assignCardsToPlayers()
         clearDiscardPiles()
     }
 
     private fun assignCardsToPlayers() {
-        userPlayer.cardPile.addAll(gameCardShuffler.assignCards())
-        opponentPlayer.cardPile.addAll(gameCardShuffler.assignCards())
+        userPlayer.cardPile.addAll(cardShuffler.assignCards())
+        opponentPlayer.cardPile.addAll(cardShuffler.assignCards())
     }
 
     private fun clearDiscardPiles() {
