@@ -8,12 +8,12 @@ import com.albertcid.cardsgame.domain.usecase.RestartGameUseCaseImpl
 import dagger.Binds
 import dagger.Module
 
-//@Module
-//interface UseCaseModule {
-//    @Binds
-//    fun bindPlayRoundUseCase(usecase: PlayRoundUseCaseImpl): PlayRoundUseCase
-//
-//    @Binds
-//    fun bindRestartGameUseCase(usecase: RestartGameUseCaseImpl): RestartGameUseCase
-//
-//}
+@Module
+interface UseCaseModule {
+    @Binds
+    fun bindPlayRoundUseCase(usecase: PlayRoundUseCaseImpl): PlayRoundUseCase
+
+    @Binds
+    fun bindRestartGameUseCase(usecase: RestartGameUseCaseImpl): RestartGameUseCase
+
+}

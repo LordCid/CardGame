@@ -10,21 +10,20 @@ import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-//@Module
-//interface MainModule {
-//    @Binds
-//    fun bindMainViewModelFactory(viewModelFactory: MainViewModelFactory): ViewModelProvider.NewInstanceFactory
-//}
-
 @Module
-object MainModule {
-    @Provides
-    @JvmStatic
-    fun provideIODispatcher(): ViewModelProvider.NewInstanceFactory {
-        return MainViewModelFactory(
-            PlayRoundUseCaseImpl(),
-            RestartGameUseCaseImpl()
-        )
-    }
-
+interface MainModule {
+    @Binds
+    fun bindMainViewModelFactory(viewModelFactory: MainViewModelFactory): ViewModelProvider.NewInstanceFactory
 }
+
+//@Module
+//object MainModule {
+//    @Provides
+//    @JvmStatic
+//    fun provideIODispatcher(): ViewModelProvider.NewInstanceFactory {
+//        return MainViewModelFactory(
+//            PlayRoundUseCaseImpl(),
+//            RestartGameUseCaseImpl()
+//        )
+//    }
+//}

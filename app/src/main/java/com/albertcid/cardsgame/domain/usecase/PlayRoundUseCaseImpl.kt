@@ -7,9 +7,7 @@ import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
 import javax.inject.Inject
 
-class PlayRoundUseCaseImpl
-//@Inject constructor
-    (
+class PlayRoundUseCaseImpl @Inject constructor(
 //    private val gameTable: GameTable
 ) : PlayRoundUseCase {
     override fun invoke(): GameStatus {

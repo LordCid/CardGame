@@ -7,9 +7,7 @@ import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
 import javax.inject.Inject
 
-class RestartGameUseCaseImpl
-//@Inject constructor
-    (
+class RestartGameUseCaseImpl @Inject constructor(
 //    private val gameTable: GameTable
 ) : RestartGameUseCase {
     override fun invoke(): GameStatus {

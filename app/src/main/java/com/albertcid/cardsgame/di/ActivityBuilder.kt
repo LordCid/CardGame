@@ -5,10 +5,10 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module(
-//    includes = [
-//        UseCaseModule::class,
+    includes = [
+        UseCaseModule::class
 //        GameModule::class
-//    ]
+    ]
 )
 interface ActivityBuilder {
     @ContributesAndroidInjector(modules = [MainModule::class])
