@@ -3,6 +3,7 @@ package com.albertcid.cardsgame.domain.game
 import com.albertcid.cardsgame.domain.GameStatus
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
+import com.albertcid.cardsgame.domain.model.CardValue
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -14,8 +15,8 @@ class GameTableImpl @Inject constructor(
 ) : GameTable {
     override var round = 0
     private var suitPriority = listOf<CardSuit>()
-    private lateinit var userPlayerCard: Card
-    private lateinit var opponentPlayerCard: Card
+    private var userPlayerCard = Card()
+    private var opponentPlayerCard = Card()
 
     private var isUserWinnerOfRound = false
 
@@ -23,8 +24,8 @@ class GameTableImpl @Inject constructor(
         return GameStatus(
             currentRound = round,
             isUserWinnerOfRound = isUserWinnerOfRound,
-            userCardPlayed = if (round > 0) userPlayerCard else null,
-            opponentCardPlayed = if (round > 0) opponentPlayerCard else null,
+            userCardPlayed = userPlayerCard,
+            opponentCardPlayed = opponentPlayerCard,
             totalUsersCardPile = userPlayer.getCardPileSize(),
             totalUsersDiscardPile = userPlayer.getDiscardPileSize(),
             totalOpponentDiscardPile = opponentPlayer.getDiscardPileSize()

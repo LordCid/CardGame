@@ -32,8 +32,8 @@ class GameIntegrationTest {
         val expected = GameStatus(
             currentRound = 0,
             isUserWinnerOfRound = false,
-            userCardPlayed = null,
-            opponentCardPlayed = null,
+            userCardPlayed = Card(),
+            opponentCardPlayed = Card(),
             totalUsersCardPile = 26,
             totalUsersDiscardPile = 0,
             totalOpponentDiscardPile = 0

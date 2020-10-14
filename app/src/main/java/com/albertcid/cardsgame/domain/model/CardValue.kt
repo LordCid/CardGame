@@ -1,6 +1,7 @@
 package com.albertcid.cardsgame.domain.model
 
 enum class CardValue(value: Int) {
+    NONE(0),
     TWO(1),
     THREE(2),
     FOUR(3),

@@ -83,8 +83,8 @@ class MainViewModelTest {
         val restartGameStatus = GameStatus(
             currentRound = 0,
             isUserWinnerOfRound = false,
-            userCardPlayed = null,
-            opponentCardPlayed = null,
+            userCardPlayed = Card(),
+            opponentCardPlayed = Card(),
             totalUsersCardPile = 25,
             totalUsersDiscardPile = 0,
             totalOpponentDiscardPile = 0
