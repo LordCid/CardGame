@@ -35,7 +35,7 @@ class PlayRoundUseCaseTest {
             totalOpponentDiscardPile = 2
         )
 
-        given(gameTable.getGameStatus()).willReturn( expected )
+        given(gameTable.playRound()).willReturn( expected )
 
         val actual = sut.invoke()
 
@@ -55,7 +55,7 @@ class PlayRoundUseCaseTest {
             totalOpponentDiscardPile = 0
         )
 
-        given(gameTable.getGameStatus()).willReturn( expected )
+        given(gameTable.playRound()).willReturn( expected )
 
         val actual = sut.invoke()
 

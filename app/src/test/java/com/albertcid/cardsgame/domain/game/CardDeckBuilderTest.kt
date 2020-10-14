@@ -1,4 +1,4 @@
-package com.albertcid.cardsgame.domain
+package com.albertcid.cardsgame.domain.game
 
 import com.albertcid.cardsgame.clubsSuit
 import com.albertcid.cardsgame.diamondsSuit

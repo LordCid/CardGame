@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateUI(screenState: MainViewState) {
         with((screenState as MainViewState.ShowGameStatus).gameStatus) {
             round_val_tv.text = currentRound.toString()
-            pile_val_tv.text = totalOpponentDiscardPile.toString()
+            pile_val_tv.text = totalUsersCardPile.toString()
             dis_op_val_tv.text = totalOpponentDiscardPile.toString()
             discard_val_tv.text = totalUsersDiscardPile.toString()
             opponents_card_tv.text = opponentCardPlayed.toLiteral()

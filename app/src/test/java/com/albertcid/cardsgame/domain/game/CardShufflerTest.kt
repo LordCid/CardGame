@@ -1,11 +1,8 @@
-package com.albertcid.cardsgame.domain
+package com.albertcid.cardsgame.domain.game
 
 
 import com.albertcid.cardsgame.clubsSuit
 import com.albertcid.cardsgame.diamondsSuit
-import com.albertcid.cardsgame.domain.game.CardDeckBuilder
-import com.albertcid.cardsgame.domain.game.CardShuffler
-import com.albertcid.cardsgame.domain.game.CardShufflerImpl
 import com.albertcid.cardsgame.heartsSuit
 import com.albertcid.cardsgame.spadesSuit
 import com.nhaarman.mockitokotlin2.given
@@ -49,7 +46,7 @@ class CardShufflerTest {
         val actual = sut.assignCards()
         expected.removeAll( actual)
 
-        assertFalse(expected.contains(actual))
+        assertFalse(expected.containsAll(actual))
     }
 
 
@@ -61,7 +58,7 @@ class CardShufflerTest {
         val actual = sut.assignCards()
         expected.removeAll( actual)
 
-        assertFalse(expected.contains(actual))
+        assertFalse(expected.containsAll(actual))
     }
 
     private fun givenFullCardDeckToAssign() {

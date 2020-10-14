@@ -8,23 +8,23 @@ import javax.inject.Singleton
 
 @Singleton
 class GameTableImpl @Inject constructor(
-    override val userPlayer: Player,
-    override val opponentPlayer: Player,
+    private val userPlayer: Player,
+    private val opponentPlayer: Player,
     private val cardShuffler: CardShuffler
 ) : GameTable {
     override var round = 0
     private var suitPriority = listOf<CardSuit>()
-    private lateinit var cardOne : Card
-    private lateinit var cardTwo : Card
+    private lateinit var userPlayerCard: Card
+    private lateinit var opponentPlayerCard: Card
 
     private var isUserWinnerOfRound = false
 
-    override fun getGameStatus(): GameStatus {
+    private fun getGameStatus(): GameStatus {
         return GameStatus(
             currentRound = round,
             isUserWinnerOfRound = isUserWinnerOfRound,
-            userCardPlayed = cardOne,
-            opponentCardPlayed = cardTwo,
+            userCardPlayed = if (round > 0) userPlayerCard else null,
+            opponentCardPlayed = if (round > 0) opponentPlayerCard else null,
             totalUsersCardPile = userPlayer.cardPile.size,
             totalUsersDiscardPile = userPlayer.discardPile.size,
             totalOpponentDiscardPile = opponentPlayer.discardPile.size
@@ -32,44 +32,52 @@ class GameTableImpl @Inject constructor(
 
     }
 
-
-    override fun startGame() {
+    override fun startGame(): GameStatus {
         round = 0
         suitPriority = cardShuffler.generateSuitPriority()
+        clearPiles(userPlayer)
+        clearPiles(opponentPlayer)
         assignCardsToPlayers()
-        clearDiscardPiles()
+        return getGameStatus()
     }
+
+
+    private fun clearPiles(player: Player) {
+        with(player) {
+            cardPile.clear()
+            discardPile.clear()
+        }
+    }
+
 
     private fun assignCardsToPlayers() {
         userPlayer.cardPile.addAll(cardShuffler.assignCards())
         opponentPlayer.cardPile.addAll(cardShuffler.assignCards())
     }
 
-    private fun clearDiscardPiles() {
-        userPlayer.discardPile.clear()
-        opponentPlayer.discardPile.clear()
-    }
 
-    override fun playRound() {
-        cardOne = userPlayer.playCard()
-        cardTwo = opponentPlayer.playCard()
+
+    override fun playRound(): GameStatus {
         round += 1
+        userPlayerCard = userPlayer.playCard()
+        opponentPlayerCard = opponentPlayer.playCard()
 
-        if (cardOne.value == cardTwo.value) {
-            if (suitPriority.indexOf(cardOne.suit) < suitPriority.indexOf(cardTwo.suit)) {
-                userPlayer.winRound(cardOne, cardTwo)
+        if (userPlayerCard.value == opponentPlayerCard.value) {
+            if (suitPriority.indexOf(userPlayerCard.suit) < suitPriority.indexOf(opponentPlayerCard.suit)) {
+                userPlayer.winRound(userPlayerCard, opponentPlayerCard)
                 isUserWinnerOfRound = true
             } else {
-                opponentPlayer.winRound(cardOne, cardTwo)
+                opponentPlayer.winRound(userPlayerCard, opponentPlayerCard)
                 isUserWinnerOfRound = false
             }
 
-        } else if (cardOne.value > cardTwo.value) {
-            userPlayer.winRound(cardOne, cardTwo)
+        } else if (userPlayerCard.value > opponentPlayerCard.value) {
+            userPlayer.winRound(userPlayerCard, opponentPlayerCard)
             isUserWinnerOfRound = true
         } else {
-            opponentPlayer.winRound(cardOne, cardTwo)
+            opponentPlayer.winRound(userPlayerCard, opponentPlayerCard)
             isUserWinnerOfRound = false
         }
+        return getGameStatus()
     }
 }

@@ -4,8 +4,6 @@ import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
 
-fun getFullCardDeck() = spadesSuit + diamondsSuit + heartsSuit + clubsSuit
-
 val spadesSuit = mutableSetOf(
     Card(CardValue.TWO, CardSuit.SPADES),
     Card(CardValue.THREE, CardSuit.SPADES),
@@ -19,7 +17,7 @@ val spadesSuit = mutableSetOf(
     Card(CardValue.JOCKEY, CardSuit.SPADES),
     Card(CardValue.QUEEN, CardSuit.SPADES),
     Card(CardValue.KING, CardSuit.SPADES),
-    Card(CardValue.ACE, CardSuit.SPADES),
+    Card(CardValue.ACE, CardSuit.SPADES)
 )
 
 val diamondsSuit = mutableSetOf(
@@ -96,7 +94,7 @@ val randomFullUserCardDeck = mutableSetOf(
     Card(CardValue.JOCKEY, CardSuit.CLUBS),
     Card(CardValue.QUEEN, CardSuit.CLUBS),
     Card(CardValue.KING, CardSuit.CLUBS),
-    Card(CardValue.ACE, CardSuit.CLUBS),
+    Card(CardValue.ACE, CardSuit.CLUBS)
 )
 
 val randomOpponentFullCardDeck = mutableSetOf(

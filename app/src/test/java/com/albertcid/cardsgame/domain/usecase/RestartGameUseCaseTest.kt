@@ -34,7 +34,7 @@ class RestartGameUseCaseTest {
             totalUsersDiscardPile = 0,
             totalOpponentDiscardPile = 0
         )
-        given(gameTable.getGameStatus()).willReturn( expected )
+        given(gameTable.startGame()).willReturn( expected )
 
         val actual = sut.invoke()
 

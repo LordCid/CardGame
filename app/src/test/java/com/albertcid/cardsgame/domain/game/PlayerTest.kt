@@ -1,4 +1,4 @@
-package com.albertcid.cardsgame.domain
+package com.albertcid.cardsgame.domain.game
 
 import com.albertcid.cardsgame.domain.game.Player
 import com.albertcid.cardsgame.domain.game.PlayerImpl
