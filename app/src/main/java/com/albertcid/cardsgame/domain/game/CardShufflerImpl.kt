@@ -24,4 +24,14 @@ class CardShufflerImpl @Inject constructor(
         cardDeck.shuffled()
         return cardDeck.chunked(totalCardsForPlayer)[0].toMutableSet()
     }
+
+    override fun assignCardsToPlayers(playerOne: Player, playerTwo: Player) {
+        cardDeck.shuffled()
+        val chunkedCards =  cardDeck.chunked(cardDeck.size / 2)
+        val playerOnesCard = chunkedCards[0].shuffled().toMutableList()
+        val playerTwoCard = chunkedCards[1].shuffled().toMutableList()
+
+        playerOne.receiveCardPile(playerOnesCard)
+        playerTwo.receiveCardPile(playerTwoCard)
+    }
 }

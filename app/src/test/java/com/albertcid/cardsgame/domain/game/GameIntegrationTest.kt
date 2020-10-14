@@ -1,11 +1,11 @@
 package com.albertcid.cardsgame.domain.game
 
+import com.albertcid.cardsgame.*
 import com.albertcid.cardsgame.domain.GameStatus
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
-import com.albertcid.cardsgame.randomFullUserCardDeck
-import com.albertcid.cardsgame.randomOpponentFullCardDeck
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import junit.framework.Assert.assertEquals
@@ -13,7 +13,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
-class GameTableIntegrationTest {
+class GameIntegrationTest {
 
     private lateinit var sut: GameTable
 
@@ -23,9 +23,28 @@ class GameTableIntegrationTest {
 
     @Before
     fun setUp() {
-
         sut = GameTableImpl(userPlayer, opponentPlayer, cardShuffler)
     }
+
+    @Test
+    fun `When start game correct status is set`() {
+        givenCardsAssignedOnStartGame()
+        val expected = GameStatus(
+            currentRound = 0,
+            isUserWinnerOfRound = false,
+            userCardPlayed = null,
+            opponentCardPlayed = null,
+            totalUsersCardPile = 26,
+            totalUsersDiscardPile = 0,
+            totalOpponentDiscardPile = 0
+        )
+
+        val actual = sut.startGame()
+
+        assertEquals(expected, actual)
+    }
+
+
 
     @Test
     fun `Given user player lose first round, should return correct Game Status is returned`() {
@@ -84,25 +103,12 @@ class GameTableIntegrationTest {
         sut.playRound()
     }
 
-//    private fun givenPileResultsUserWin() {
-//        given(userPlayer.cardPile).willReturn(randomFullUserCardDeck.toMutableList())
-//        given(userPlayer.discardPile).willReturn(mutableSetOf())
-//        given(opponentPlayer.discardPile).willReturn(
-//            mutableSetOf(
-//                Card(CardValue.TWO, CardSuit.HEARTS),
-//                Card(CardValue.TWO, CardSuit.SPADES)
-//            )
-//        )
-//    }
-//
-//    private fun givenPileResultsUserLose() {
-//        given(userPlayer.cardPile).willReturn(randomFullUserCardDeck.toMutableList())
-//        given(userPlayer.discardPile).willReturn(
-//            mutableSetOf(
-//                Card(CardValue.FIVE, CardSuit.HEARTS),
-//                Card(CardValue.KING, CardSuit.DIAMONDS)
-//            )
-//        )
-//        given(opponentPlayer.discardPile).willReturn(mutableSetOf())
-//    }
+    private fun givenCardsAssignedOnStartGame() {
+        given(cardShuffler.assignCardsToPlayers(userPlayer, opponentPlayer)).willAnswer {
+            userPlayer.receiveCardPile(randomFullUserCardDeck.toMutableList())
+            opponentPlayer.receiveCardPile(randomOpponentFullCardDeck.toMutableList())
+        }
+    }
+
+
 }

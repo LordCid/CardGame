@@ -4,6 +4,7 @@ import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
 
+
 val spadesSuit = mutableSetOf(
     Card(CardValue.TWO, CardSuit.SPADES),
     Card(CardValue.THREE, CardSuit.SPADES),

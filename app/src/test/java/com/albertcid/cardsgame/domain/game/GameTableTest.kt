@@ -39,22 +39,17 @@ class GameTableTest {
 
     @Test
     fun `When start game each player should receive cards to play`() {
-        val someCards = randomFullUserCardDeck
-        given(cardShuffler.assignCards()).willReturn(someCards)
-        givenStubedPileCards()
-
         sut.startGame()
 
-        verify(userPlayer.cardPile).addAll(someCards)
-        verify(opponentPlayer.cardPile).addAll(someCards)
+        verify(cardShuffler).assignCardsToPlayers(userPlayer, opponentPlayer)
     }
 
     @Test
     fun `When start game each player pilse cards is set empty`() {
         val someCards = randomFullUserCardDeck
         given(cardShuffler.assignCards()).willReturn(someCards)
-        givenStubedPileCards()
-        givenSubbedDiscardCards()
+        givenStartPileCards()
+        givenStartDiscardCards()
 
         sut.startGame()
 
@@ -63,77 +58,6 @@ class GameTableTest {
         verify(userPlayer.discardPile).clear()
         verify(opponentPlayer.discardPile).clear()
     }
-
-    @Test
-    fun `When start game correct status is set`() {
-        val someCards = randomFullUserCardDeck
-        given(cardShuffler.assignCards()).willReturn(someCards)
-        givenStubedPileCards()
-        givenSubbedDiscardCards()
-        val expected = GameStatus(
-            currentRound = 0,
-            isUserWinnerOfRound = false,
-            userCardPlayed = null,
-            opponentCardPlayed = null,
-            totalUsersCardPile = 26,
-            totalUsersDiscardPile = 0,
-            totalOpponentDiscardPile = 0
-        )
-
-        val actual = sut.startGame()
-
-       assertEquals(expected, actual)
-    }
-
-
-//    @Test
-//    fun `When finish game correct status is set`() {
-//        val someCards = randomFullUserCardDeck
-//        given(cardShuffler.assignCards()).willReturn(someCards)
-//        givenStubedPileCards()
-//        givenSubbedDiscardCards()
-//        val expected = GameStatus(
-//            currentRound = 0,
-//            isUserWinnerOfRound = false,
-//            userCardPlayed = null,
-//            opponentCardPlayed = null,
-//            totalUsersCardPile = 26,
-//            totalUsersDiscardPile = 0,
-//            totalOpponentDiscardPile = 0
-//        )
-//
-//        val actual = sut.startGame()
-//
-//        assertEquals(expected, actual)
-//    }
-
-//    @Test
-//    fun `Given user player lose first round, should return correct Game Status is returned`() {
-//        givenFirstRound()
-//        val cardOne = Card(CardValue.TWO, CardSuit.HEARTS)
-//        val cardTwo = Card(CardValue.KING, CardSuit.DIAMONDS)
-//        given(userPlayer.playCard()).willReturn(cardOne)
-//        given(opponentPlayer.playCard()).willReturn(cardTwo)
-//
-//        val expected = GameStatus(
-//            currentRound = 1,
-//            isUserWinnerOfRound = false,
-//            userCardPlayed = cardOne,
-//            opponentCardPlayed = cardTwo,
-//            totalUsersCardPile = 25,
-//            totalUsersDiscardPile = 0,
-//            totalOpponentDiscardPile = 2
-//        )
-//
-//        val actual = sut.playRound()
-//
-//        assertEquals(expected, actual)
-//    }
-//
-//    private fun givenFirstRound() {
-//        given(cardShuffler.assignCards()).willReturn(randomFullUserCardDeck)
-//        sut.startGame()
-//    }
 
 
     @Test
@@ -204,7 +128,9 @@ class GameTableTest {
 
 //    @Test
 //    fun `Given finish game conditions are matched and user player is winner, correct status is returned`() {
-//        TODO("Not yet implemented")
+//        sut.round = 26
+//
+//        sut.playRound()
 //    }
 
 
@@ -218,14 +144,14 @@ class GameTableTest {
         sut.startGame()
     }
 
-    private fun givenSubbedDiscardCards() {
+    private fun givenStartDiscardCards() {
         given(userPlayer.discardPile).willReturn(spy(mutableSetOf()))
         given(opponentPlayer.discardPile).willReturn(spy(mutableSetOf()))
     }
 
-    private fun givenStubedPileCards() {
-        given(userPlayer.cardPile).willReturn(spy(mutableListOf()))
-        given(opponentPlayer.cardPile).willReturn(spy(mutableListOf()))
+    private fun givenStartPileCards() {
+        given(userPlayer.cardPile).willReturn(spy(randomFullUserCardDeck.toMutableList()))
+        given(opponentPlayer.cardPile).willReturn(spy(randomOpponentFullCardDeck.toMutableList()))
     }
 
 

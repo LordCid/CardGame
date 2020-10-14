@@ -1,7 +1,5 @@
 package com.albertcid.cardsgame.domain.game
 
-import com.albertcid.cardsgame.domain.game.Player
-import com.albertcid.cardsgame.domain.game.PlayerImpl
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
@@ -61,6 +59,26 @@ class PlayerTest {
         assertEquals(expected, sut.discardPile)
     }
 
+    @Test
+    fun `Should return card pile size`() {
+        givenPileOfCards()
+        val expected = 3
+
+        val actual = sut.getCardPileSize()
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `Should return discard pile size`() {
+        givenDiscardPile()
+        val expected = 2
+
+        val actual = sut.getDiscardPileSize()
+
+        assertEquals(expected, actual)
+    }
+
     private fun givenPileOfCards(){
         val pileCards = mutableSetOf(
             Card(CardValue.THREE, CardSuit.CLUBS),
@@ -78,5 +96,9 @@ class PlayerTest {
         )
         sut.cardPile.addAll(pileCards)
         sut.playCard()
+    }
+
+    private fun givenDiscardPile(){
+        sut.winRound(Card(CardValue.FOUR, CardSuit.CLUBS), Card(CardValue.FIVE, CardSuit.CLUBS))
     }
 }

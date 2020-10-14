@@ -16,4 +16,11 @@ class PlayerImpl @Inject constructor() : Player {
     override fun winRound(vararg cards: Card) {
         discardPile.addAll(cards)
     }
+
+    override fun receiveCardPile(cards: MutableList<Card>) {
+        cardPile.addAll(cards)
+    }
+
+    override fun getCardPileSize() = cardPile.size
+    override fun getDiscardPileSize() = discardPile.size
 }
