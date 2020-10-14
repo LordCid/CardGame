@@ -4,14 +4,14 @@ import com.albertcid.cardsgame.domain.GameStatus
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class GameTableImpl
-//@Inject constructor
-    (
+@Singleton
+class GameTableImpl @Inject constructor(
     override val userPlayer: Player,
+    override val opponentPlayer: Player,
     private val cardShuffler: CardShuffler
 ) : GameTable {
-    override val opponentPlayer = PlayerImpl()
     override var round = 0
     private var suitPriority = listOf<CardSuit>()
     private lateinit var cardOne : Card

@@ -3,9 +3,7 @@ package com.albertcid.cardsgame.domain.game
 import com.albertcid.cardsgame.domain.model.Card
 import javax.inject.Inject
 
-class PlayerImpl
-//@Inject constructor()
-    : Player {
+class PlayerImpl @Inject constructor() : Player {
     override val discardPile = mutableSetOf<Card>()
     override val cardPile = mutableListOf<Card>()
 
