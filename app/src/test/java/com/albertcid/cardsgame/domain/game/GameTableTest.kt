@@ -126,12 +126,17 @@ class GameTableTest {
         verify(opponentPlayer, never()).winRound(any())
     }
 
-//    @Test
-//    fun `Given finish game conditions are matched and user player is winner, correct status is returned`() {
-//        sut.round = 26
-//
-//        sut.playRound()
-//    }
+    @Test
+    fun `Given finish game conditions are matched and user player is winner, correct status is returned`() {
+        sut.round = 25
+        given(userPlayer.getDiscardPileSize()).willReturn(22)
+        given(opponentPlayer.getDiscardPileSize()).willReturn(2)
+        
+
+        val gameStatus = sut.playRound()
+
+        assertTrue(gameStatus.isUserWinnerOfGame)
+    }
 
 
 

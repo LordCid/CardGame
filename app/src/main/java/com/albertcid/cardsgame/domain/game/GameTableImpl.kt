@@ -24,6 +24,7 @@ class GameTableImpl @Inject constructor(
         return GameStatus(
             currentRound = round,
             isUserWinnerOfRound = isUserWinnerOfRound,
+            isUserWinnerOfGame = false,
             userCardPlayed = userPlayerCard,
             opponentCardPlayed = opponentPlayerCard,
             totalUsersCardPile = userPlayer.getCardPileSize(),
