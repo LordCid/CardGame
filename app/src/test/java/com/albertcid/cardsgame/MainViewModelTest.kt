@@ -2,6 +2,7 @@ package com.albertcid.cardsgame
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.albertcid.cardsgame.domain.GameStatus
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
@@ -12,13 +13,6 @@ import com.albertcid.cardsgame.presentation.MainViewModelImpl
 import com.albertcid.cardsgame.presentation.MainViewState
 import com.nhaarman.mockitokotlin2.*
 import junit.framework.Assert.assertEquals
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.setMain
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -86,22 +80,22 @@ class MainViewModelTest {
 
     @Test
     fun `When restart game, GameStatus Should return to inital state`() {
-        val resultGameStatus = GameStatus(
+        val restartGameStatus = GameStatus(
             currentRound = 0,
             isUserWinnerOfRound = false,
-            userCardPlayed = Card(CardValue.TWO, CardSuit.HEARTS),
-            opponentCardPlayed = Card(CardValue.KING, CardSuit.DIAMONDS),
+            userCardPlayed = null,
+            opponentCardPlayed = null,
             totalUsersCardPile = 25,
             totalUsersDiscardPile = 0,
             totalOpponentDiscardPile = 0
         )
-        given(restartGameUseCase.invoke()).willReturn(resultGameStatus)
+        given(restartGameUseCase.invoke()).willReturn(restartGameStatus)
 
         sut.viewState.observeForever(observer)
         sut.restartGame()
 
         verify(observer).onChanged(captorScreenState.capture())
         val capturedState = captorScreenState.firstValue as MainViewState.ShowGameStatus
-        assertEquals(resultGameStatus, capturedState.gameStatus)
+        assertEquals(restartGameStatus, capturedState.gameStatus)
     }
 }
