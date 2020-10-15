@@ -1,6 +1,6 @@
 package com.albertcid.cardsgame.di
 
-import com.albertcid.cardsgame.presentation.MainActivity
+import com.albertcid.cardsgame.presentation.view.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

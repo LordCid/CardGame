@@ -1,4 +1,4 @@
-package com.albertcid.cardsgame.presentation
+package com.albertcid.cardsgame.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.albertcid.cardsgame.R
 import com.albertcid.cardsgame.domain.toLiteral
+import com.albertcid.cardsgame.presentation.state.MainViewState
+import com.albertcid.cardsgame.presentation.viewmodel.MainViewModel
+import com.albertcid.cardsgame.presentation.viewmodel.MainViewModelImpl
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject

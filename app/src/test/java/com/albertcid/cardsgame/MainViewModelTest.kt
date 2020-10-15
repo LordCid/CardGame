@@ -8,9 +8,9 @@ import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
 import com.albertcid.cardsgame.domain.usecase.PlayRoundUseCase
 import com.albertcid.cardsgame.domain.usecase.RestartGameUseCase
-import com.albertcid.cardsgame.presentation.MainViewModel
-import com.albertcid.cardsgame.presentation.MainViewModelImpl
-import com.albertcid.cardsgame.presentation.MainViewState
+import com.albertcid.cardsgame.presentation.state.MainViewState
+import com.albertcid.cardsgame.presentation.viewmodel.MainViewModel
+import com.albertcid.cardsgame.presentation.viewmodel.MainViewModelImpl
 import com.nhaarman.mockitokotlin2.*
 import junit.framework.Assert.assertEquals
 import org.junit.Before
