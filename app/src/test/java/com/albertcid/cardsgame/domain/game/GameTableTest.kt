@@ -124,6 +124,28 @@ class GameTableTest {
         assertTrue(gameStatus.isGameFinished)
     }
 
+    @Test
+    fun `Given suit priority, its return into game status`() {
+        val expected = listOf(CardSuit.SPADES, CardSuit.DIAMONDS, CardSuit.HEARTS, CardSuit.CLUBS)
+        given(cardShuffler.generateSuitPriority()).willReturn(expected)
+        givenCurrentGameAtSomeRound(0)
+
+        val actual = sut.playRound()
+
+        assertEquals(expected, actual.suitPriority)
+    }
+
+    @Test
+    fun `Given OTHER suit priority, its return into game status`() {
+        val expected = listOf(CardSuit.DIAMONDS, CardSuit.CLUBS, CardSuit.HEARTS, CardSuit.SPADES)
+        given(cardShuffler.generateSuitPriority()).willReturn(expected)
+        givenCurrentGameAtSomeRound(0)
+
+        val actual = sut.playRound()
+
+        assertEquals(expected, actual.suitPriority)
+    }
+
     private fun givenPlayedRound(
         cardOne: Card,
         cardTwo: Card
