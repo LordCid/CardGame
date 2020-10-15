@@ -18,48 +18,6 @@ class PlayerTest {
     }
 
     @Test
-    fun `Should play one card correctly`() {
-        givenPileOfCards()
-        val expectedPileCards = mutableListOf(
-            Card(CardValue.FOUR, CardSuit.CLUBS),
-            Card(CardValue.FIVE, CardSuit.CLUBS)
-        )
-        val expected = Card(CardValue.THREE, CardSuit.CLUBS)
-
-
-        val actual = sut.playCard()
-
-        assertEquals(expectedPileCards, sut.cardPile)
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `Should play ANOTHER card correctly`() {
-        givenAnotherPileOfCards()
-        val expectedPileCards = mutableListOf(
-            Card(CardValue.FIVE, CardSuit.CLUBS)
-        )
-        val expected = Card(CardValue.FOUR, CardSuit.CLUBS)
-
-        val actual = sut.playCard()
-
-        assertEquals(expectedPileCards, sut.cardPile)
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `When round winned should add cards to discard pile`() {
-        val expected = mutableSetOf(
-            Card(CardValue.FOUR, CardSuit.CLUBS),
-            Card(CardValue.FIVE, CardSuit.CLUBS)
-        )
-
-        sut.winRound(Card(CardValue.FOUR, CardSuit.CLUBS), Card(CardValue.FIVE, CardSuit.CLUBS))
-
-        assertEquals(expected, sut.discardPile)
-    }
-
-    @Test
     fun `Should return card pile size`() {
         givenPileOfCards()
         val expected = 3
@@ -80,14 +38,45 @@ class PlayerTest {
     }
 
     @Test
+    fun `Should play one card correctly`() {
+        givenPileOfCards()
+        val expected = Card(CardValue.THREE, CardSuit.CLUBS)
+
+
+        val actual = sut.playCard()
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `Should play ANOTHER card correctly`() {
+        givenAnotherPileOfCards()
+        val expected = Card(CardValue.FOUR, CardSuit.CLUBS)
+
+        val actual = sut.playCard()
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `When round winned should add cards to discard pile`() {
+        val expectedSize = 2
+
+        sut.winRound(Card(CardValue.FOUR, CardSuit.CLUBS), Card(CardValue.FIVE, CardSuit.CLUBS))
+
+        assertEquals(expectedSize,  sut.getDiscardPileSize())
+    }
+
+
+    @Test
     fun `Should clear all decks`() {
         givenPileOfCards()
         givenDiscardPile()
 
         sut.clearDecks()
 
-        assertEquals(0, sut.cardPile.size)
-        assertEquals(0, sut.discardPile.size)
+        assertEquals(0, sut.getCardPileSize())
+        assertEquals(0, sut.getDiscardPileSize())
     }
 
     private fun givenPileOfCards(){

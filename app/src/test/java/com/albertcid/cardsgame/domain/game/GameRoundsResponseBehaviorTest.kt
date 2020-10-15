@@ -49,7 +49,7 @@ class GameRoundsResponseBehaviorTest {
 
     @Test
     fun `Given user player lose first round, should return correct Game Status is returned`() {
-        givenFirstRound()
+        givenCurrentGameAtSomeRound(0)
         val cardOne = Card(CardValue.TWO, CardSuit.HEARTS)
         val cardTwo = Card(CardValue.KING, CardSuit.DIAMONDS)
 
@@ -73,7 +73,7 @@ class GameRoundsResponseBehaviorTest {
 
     @Test
     fun `Given user player win second round, should return correct Game Status is returned`() {
-        givenSecondRound()
+        givenCurrentGameAtSomeRound(1)
         val cardOne = Card(CardValue.THREE, CardSuit.HEARTS)
         val cardTwo = Card(CardValue.TWO, CardSuit.DIAMONDS)
         val expected = GameStatus(
@@ -93,17 +93,11 @@ class GameRoundsResponseBehaviorTest {
         assertEquals(expected, actual)
     }
 
-    private fun givenFirstRound(){
-        sut.startGame()
-        userPlayer.cardPile.addAll(randomFullUserCardDeck)
-        opponentPlayer.cardPile.addAll(randomOpponentFullCardDeck)
-    }
 
-    private fun givenSecondRound(){
+    private fun givenCurrentGameAtSomeRound(round: Int) {
+        givenCardsAssignedOnStartGame()
         sut.startGame()
-        userPlayer.cardPile.addAll(randomFullUserCardDeck)
-        opponentPlayer.cardPile.addAll(randomOpponentFullCardDeck)
-        sut.playRound()
+        repeat(round) { sut.playRound() }
     }
 
     private fun givenCardsAssignedOnStartGame() {

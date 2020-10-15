@@ -42,14 +42,13 @@ class GameTableTest {
     }
 
     @Test
-    fun `When start game each player pilse cards is set empty`() {
-        givenStartPileCards()
-        givenStartDiscardCards()
+    fun `When restart game each player pilse cards is set empty`() {
+        givenCurrentGameAtSomeRound(10)
 
         sut.startGame()
 
-        verify(userPlayer).clearDecks()
-        verify(opponentPlayer).clearDecks()
+        verify(userPlayer, times(2)).clearDecks()
+        verify(opponentPlayer, times(2)).clearDecks()
     }
 
 
@@ -133,15 +132,6 @@ class GameTableTest {
         given(opponentPlayer.playCard()).willReturn(cardTwo)
     }
 
-    private fun givenStartDiscardCards() {
-        given(userPlayer.discardPile).willReturn(spy(mutableSetOf()))
-        given(opponentPlayer.discardPile).willReturn(spy(mutableSetOf()))
-    }
-
-    private fun givenStartPileCards() {
-        given(userPlayer.cardPile).willReturn(spy(randomFullUserCardDeck.toMutableList()))
-        given(opponentPlayer.cardPile).willReturn(spy(randomOpponentFullCardDeck.toMutableList()))
-    }
 
     private fun givenCurrentGameAtSomeRound(round: Int) {
         sut.startGame()

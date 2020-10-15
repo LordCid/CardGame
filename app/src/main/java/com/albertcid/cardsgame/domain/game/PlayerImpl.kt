@@ -4,8 +4,8 @@ import com.albertcid.cardsgame.domain.model.Card
 import javax.inject.Inject
 
 class PlayerImpl @Inject constructor() : Player {
-    override val discardPile = mutableSetOf<Card>()
-    override val cardPile = mutableListOf<Card>()
+    private val discardPile = mutableSetOf<Card>()
+    private val cardPile = mutableListOf<Card>()
 
     override fun playCard(): Card {
         val card = cardPile[0]

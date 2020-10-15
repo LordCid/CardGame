@@ -1,6 +1,5 @@
 package com.albertcid.cardsgame.presentation.view
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -34,7 +33,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun actionButtons() {
-        restart_btn.setOnClickListener { viewModel.restartGame() }
+        restart_btn.setOnClickListener {
+            play_btn.isEnabled = true
+            viewModel.restartGame()
+        }
         play_btn.setOnClickListener { viewModel.playRound() }
     }
 
@@ -106,6 +108,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showFinishDialog(playerWinner: Boolean) {
+        play_btn.isEnabled = false
         val dialog = EndGameDialogFragment.newInstance(playerWinner)
         dialog.show(supportFragmentManager, "end")
     }
