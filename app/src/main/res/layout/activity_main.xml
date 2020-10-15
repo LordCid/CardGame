@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/round_area"
-        app:layout_constraintBottom_toTopOf="@id/winner_tv">
+        app:layout_constraintBottom_toTopOf="@id/suit_prio_area">
 
         <TextView
             android:id="@+id/dis_op_lbl_tv"
@@ -80,6 +80,62 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/suit_prio_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/opponents_area"
+        app:layout_constraintBottom_toTopOf="@id/winner_tv">
+
+        <ImageView
+            android:id="@+id/prio1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/margin_padding_size_small"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/prio2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@drawable/ic_chip_con_club"
+            />
+
+        <ImageView
+            android:id="@+id/prio2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/margin_padding_size_small"
+            app:layout_constraintStart_toEndOf="@id/prio1"
+            app:layout_constraintEnd_toStartOf="@id/prio3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@drawable/ic_pieza_de_poquer_de_corazon"
+            />
+
+        <ImageView
+            android:id="@+id/prio3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/margin_padding_size_small"
+            app:layout_constraintStart_toEndOf="@id/prio2"
+            app:layout_constraintEnd_toStartOf="@id/prio4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@drawable/ic_pieza_de_poquer_de_espadas"
+            />
+
+        <ImageView
+            android:id="@+id/prio4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/margin_padding_size_small"
+            app:layout_constraintStart_toEndOf="@id/prio3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@drawable/ic_pieza_de_poquer_de_diamantes"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/winner_tv"
