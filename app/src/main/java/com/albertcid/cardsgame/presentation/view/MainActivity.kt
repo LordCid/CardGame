@@ -1,11 +1,14 @@
 package com.albertcid.cardsgame.presentation.view
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.albertcid.cardsgame.R
 import com.albertcid.cardsgame.domain.GameStatus
+import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.toLiteral
 import com.albertcid.cardsgame.presentation.state.MainViewState
 import com.albertcid.cardsgame.presentation.viewmodel.MainViewModel
@@ -67,8 +70,29 @@ class MainActivity : AppCompatActivity() {
             discard_val_tv.text = totalUsersDiscardPile.toString()
             opponents_card_tv.text = opponentCardPlayed.toLiteral()
             users_card_tv.text = userCardPlayed.toLiteral()
-            winner_tv.text = getWinRoundMessage(currentRound > 0, isUserWinnerOfRound)
+            winner_round_tv.text = getWinRoundMessage(currentRound > 0, isUserWinnerOfRound)
+            showSuitPriority(suitPriority)
         }
+    }
+
+    private fun getSuitImageDrawableId(suit: CardSuit): Int{
+        return when(suit){
+            CardSuit.SPADES -> R.drawable.ic_pieza_de_poquer_de_espadas
+            CardSuit.DIAMONDS -> R.drawable.ic_pieza_de_poquer_de_diamantes
+            CardSuit.CLUBS -> R.drawable.ic_chip_con_club
+            CardSuit.HEARTS -> R.drawable.ic_pieza_de_poquer_de_corazon
+        }
+    }
+
+    private fun showSuitPriority(suitPriority: List<CardSuit>){
+        prio1.setImageDrawable(
+            ContextCompat.getDrawable(this, getSuitImageDrawableId(suitPriority[0])))
+        prio2.setImageDrawable(
+            ContextCompat.getDrawable(this, getSuitImageDrawableId(suitPriority[1])))
+        prio3.setImageDrawable(
+            ContextCompat.getDrawable(this, getSuitImageDrawableId(suitPriority[2])))
+        prio4.setImageDrawable(
+            ContextCompat.getDrawable(this, getSuitImageDrawableId(suitPriority[3])))
     }
 
     private fun getWinRoundMessage(notFirstRound: Boolean, userWinner: Boolean): String {

@@ -85,7 +85,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/opponents_area"
-        app:layout_constraintBottom_toTopOf="@id/winner_tv">
+        app:layout_constraintBottom_toTopOf="@id/winner_round_tv">
+        <TextView
+            android:id="@+id/suit_prio_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_large"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/suit_prio" />
 
         <ImageView
             android:id="@+id/prio1"
@@ -138,7 +148,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/winner_tv"
+        android:id="@+id/winner_round_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size_xxlarge"
@@ -153,7 +163,7 @@
         android:id="@+id/cards_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/winner_tv"
+        app:layout_constraintTop_toBottomOf="@id/winner_round_tv"
         app:layout_constraintBottom_toTopOf="@id/play_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
