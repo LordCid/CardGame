@@ -13,7 +13,6 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class GameTableTest {
-
     private lateinit var sut: GameTable
     private val userPlayer = mock<Player>()
     private val opponentPlayer = mock<Player>()
@@ -26,12 +25,14 @@ class GameTableTest {
 
     @Test
     fun `When start game round is set to zero`() {
-        sut.round = 3
+        givenCurrentGameAtSomeRound(3)
 
-        sut.startGame()
+        val actual = sut.startGame()
 
-        assertTrue(sut.round == 0)
+        assertTrue(actual.currentRound == 0)
     }
+
+
 
     @Test
     fun `When start game each player should receive cards to play`() {
@@ -47,36 +48,29 @@ class GameTableTest {
 
         sut.startGame()
 
-        verify(userPlayer.cardPile).clear()
-        verify(opponentPlayer.cardPile).clear()
-        verify(userPlayer.discardPile).clear()
-        verify(opponentPlayer.discardPile).clear()
+        verify(userPlayer).clearDecks()
+        verify(opponentPlayer).clearDecks()
     }
 
 
     @Test
     fun `Given round 0, When play round, round counter is increased by one`() {
         val expected = 1
-        val randomCard = Card(CardValue.FOUR, CardSuit.SPADES)
-        givenPlayedRound(randomCard, randomCard)
+        givenPlayedRound(Card(), Card())
 
-        sut.playRound()
+        val actual = sut.playRound()
 
-        assertEquals(expected, sut.round)
+        assertEquals(expected, actual.currentRound)
     }
 
     @Test
     fun `Given round 2, When play round, round counter is increased by one`() {
         val expected = 2
-        sut.startGame()
-        sut.round = 1
-        val randomCard = Card(CardValue.FOUR, CardSuit.SPADES)
-        given(userPlayer.playCard()).willReturn(randomCard)
-        given(opponentPlayer.playCard()).willReturn(randomCard)
+        givenCurrentGameAtSomeRound(1)
 
-        sut.playRound()
+        val actual = sut.playRound()
 
-        assertEquals(expected, sut.round)
+        assertEquals(expected, actual.currentRound)
     }
 
     @Test
@@ -123,11 +117,9 @@ class GameTableTest {
     fun `Given finish game conditions are matched correct status is returned`() {
         given(userPlayer.getDiscardPileSize()).willReturn(22)
         given(opponentPlayer.getDiscardPileSize()).willReturn(2)
-        val cardOne = Card()
-        val cardTwo = Card()
-        givenPlayedRound(cardOne, cardTwo)
+        givenPlayedRound( Card(), Card())
+        repeat(25){ sut.playRound() }
 
-        sut.round = 25
         val gameStatus = sut.playRound()
 
         assertTrue(gameStatus.isGameFinished)
@@ -139,7 +131,6 @@ class GameTableTest {
     ) {
         given(userPlayer.playCard()).willReturn(cardOne)
         given(opponentPlayer.playCard()).willReturn(cardTwo)
-//        sut.startGame()
     }
 
     private fun givenStartDiscardCards() {
@@ -152,5 +143,9 @@ class GameTableTest {
         given(opponentPlayer.cardPile).willReturn(spy(randomOpponentFullCardDeck.toMutableList()))
     }
 
-
+    private fun givenCurrentGameAtSomeRound(round: Int) {
+        sut.startGame()
+        givenPlayedRound(Card(), Card())
+        repeat(round) { sut.playRound() }
+    }
 }

@@ -12,10 +12,10 @@ class GameTableImpl @Inject constructor(
     private val opponentPlayer: Player,
     private val cardShuffler: CardShuffler
 ) : GameTable {
-    override var round = 0
+    private var round = 0
     private var suitPriority = listOf<CardSuit>()
-    private lateinit var userPlayerCard : Card
-    private lateinit var opponentPlayerCard : Card
+    private var userPlayerCard = Card()
+    private var opponentPlayerCard  = Card()
 
 
     override fun startGame(): GameStatus {
@@ -29,17 +29,9 @@ class GameTableImpl @Inject constructor(
     }
 
     private fun clearDiscardPiles() {
-        clearPiles(userPlayer)
-        clearPiles(opponentPlayer)
+        userPlayer.clearDecks()
+        opponentPlayer.clearDecks()
     }
-
-    private fun clearPiles(player: Player) {
-        with(player) {
-            cardPile.clear()
-            discardPile.clear()
-        }
-    }
-
 
     private fun assignCardsToPlayers() {
         cardShuffler.assignCardsToPlayers(userPlayer, opponentPlayer)

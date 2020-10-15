@@ -10,4 +10,5 @@ interface Player {
     fun receiveCardPile(cards: MutableList<Card>)
     fun getCardPileSize(): Int
     fun getDiscardPileSize(): Int
+    fun clearDecks()
 }

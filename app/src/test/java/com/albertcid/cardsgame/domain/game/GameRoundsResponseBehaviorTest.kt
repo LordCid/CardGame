@@ -12,7 +12,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
-class GameIntegrationTest {
+class GameRoundsResponseBehaviorTest {
 
     private lateinit var sut: GameTable
 

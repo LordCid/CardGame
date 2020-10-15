@@ -79,22 +79,33 @@ class PlayerTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `Should clear all decks`() {
+        givenPileOfCards()
+        givenDiscardPile()
+
+        sut.clearDecks()
+
+        assertEquals(0, sut.cardPile.size)
+        assertEquals(0, sut.discardPile.size)
+    }
+
     private fun givenPileOfCards(){
-        val pileCards = mutableSetOf(
+        val pileCards = mutableListOf(
             Card(CardValue.THREE, CardSuit.CLUBS),
             Card(CardValue.FOUR, CardSuit.CLUBS),
             Card(CardValue.FIVE, CardSuit.CLUBS)
         )
-        sut.cardPile.addAll(pileCards)
+        sut.receiveCardPile(pileCards)
     }
 
     private fun givenAnotherPileOfCards(){
-        val pileCards = mutableSetOf(
+        val pileCards = mutableListOf(
             Card(CardValue.THREE, CardSuit.CLUBS),
             Card(CardValue.FOUR, CardSuit.CLUBS),
             Card(CardValue.FIVE, CardSuit.CLUBS)
         )
-        sut.cardPile.addAll(pileCards)
+        sut.receiveCardPile(pileCards)
         sut.playCard()
     }
 

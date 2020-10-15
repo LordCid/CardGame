@@ -23,4 +23,8 @@ class PlayerImpl @Inject constructor() : Player {
 
     override fun getCardPileSize() = cardPile.size
     override fun getDiscardPileSize() = discardPile.size
+    override fun clearDecks() {
+        cardPile.clear()
+        discardPile.clear()
+    }
 }
