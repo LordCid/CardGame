@@ -19,12 +19,13 @@
             android:id="@+id/round_lbl_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/round"
             android:textSize="@dimen/text_size_xlarge"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/round_val_tv"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/round" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/round_val_tv"
@@ -51,23 +52,26 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/round_area"
         app:layout_constraintBottom_toTopOf="@id/winner_tv">
+
         <TextView
             android:id="@+id/dis_op_lbl_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/opponents_discard_pile"
+            android:textColor="@color/red"
             android:textSize="@dimen/text_size_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dis_op_val_tv"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/dis_op_val_tv"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@string/opponents_discard_pile" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/dis_op_val_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_large"
+            android:textColor="@color/red"
             app:layout_constraintStart_toEndOf="@id/dis_op_lbl_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -103,6 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_xlarge"
+            android:textColor="@color/red"
             app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/users_card_tv"
@@ -115,6 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_xlarge"
+            android:textColor="@color/blue"
             app:layout_constraintTop_toBottomOf="@id/opponents_card_tv"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -147,6 +153,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_large"
             android:text="@string/pile_of_cards"
+            android:textColor="@color/blue"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/pile_val_tv"
@@ -157,11 +164,12 @@
             android:id="@+id/pile_val_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/blue"
             android:textSize="@dimen/text_size_large"
+            app:layout_constraintBottom_toTopOf="@id/discard_val_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/pile_lbl_tv"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/discard_val_tv"
             tools:text="25" />
 
         <TextView
@@ -170,6 +178,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_large"
             android:text="@string/discard_pile"
+            android:textColor="@color/blue"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintEnd_toStartOf="@id/discard_val_tv"
             app:layout_constraintStart_toStartOf="parent"
@@ -181,6 +190,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_large"
+            android:textColor="@color/blue"
             app:layout_constraintStart_toEndOf="@id/discard_lbl_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pile_val_tv"
