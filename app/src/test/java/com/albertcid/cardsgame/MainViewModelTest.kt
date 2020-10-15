@@ -12,7 +12,7 @@ import com.albertcid.cardsgame.presentation.state.MainViewState
 import com.albertcid.cardsgame.presentation.viewmodel.MainViewModel
 import com.albertcid.cardsgame.presentation.viewmodel.MainViewModelImpl
 import com.nhaarman.mockitokotlin2.*
-import junit.framework.Assert.assertEquals
+import junit.framework.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -103,5 +103,51 @@ class MainViewModelTest {
         verify(observer).onChanged(captorScreenState.capture())
         val capturedState = captorScreenState.firstValue as MainViewState.ShowGameStatus
         assertEquals(restartGameStatus, capturedState.gameStatus)
+    }
+
+    @Test
+    fun `When game finished and player is winner view is set to you win state`() {
+        val gameStatus = GameStatus(
+            currentRound = 0,
+            isUserWinnerOfRound = false,
+            isGameFinished = true,
+            userCardPlayed = Card(),
+            opponentCardPlayed = Card(),
+            totalUsersCardPile = 0,
+            totalUsersDiscardPile = 14,
+            totalOpponentDiscardPile = 10,
+            suitPriority = emptyList()
+        )
+        given(playRoundUseCase.invoke()).willReturn(gameStatus)
+
+        sut.viewState.observeForever(observer)
+        sut.playRound()
+
+        verify(observer).onChanged(captorScreenState.capture())
+        val capturedState = captorScreenState.firstValue as MainViewState.GameFinished
+        assertTrue(capturedState.isPlayerWinner)
+    }
+
+    @Test
+    fun `When game finished and player lose the game, view is set to you win state`() {
+        val gameStatus = GameStatus(
+            currentRound = 0,
+            isUserWinnerOfRound = false,
+            isGameFinished = true,
+            userCardPlayed = Card(),
+            opponentCardPlayed = Card(),
+            totalUsersCardPile = 0,
+            totalUsersDiscardPile = 10,
+            totalOpponentDiscardPile = 14,
+            suitPriority = emptyList()
+        )
+        given(playRoundUseCase.invoke()).willReturn(gameStatus)
+
+        sut.viewState.observeForever(observer)
+        sut.playRound()
+
+        verify(observer).onChanged(captorScreenState.capture())
+        val capturedState = captorScreenState.firstValue as MainViewState.GameFinished
+        assertFalse(capturedState.isPlayerWinner)
     }
 }

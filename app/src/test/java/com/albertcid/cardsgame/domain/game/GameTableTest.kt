@@ -120,7 +120,7 @@ class GameTableTest {
     }
 
     @Test
-    fun `Given finish game conditions are matched and user player is winner, correct status is returned`() {
+    fun `Given finish game conditions are matched correct status is returned`() {
         given(userPlayer.getDiscardPileSize()).willReturn(22)
         given(opponentPlayer.getDiscardPileSize()).willReturn(2)
         val cardOne = Card()
