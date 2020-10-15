@@ -14,12 +14,14 @@ class GameTableImpl @Inject constructor(
 ) : GameTable {
     override var round = 0
     private var suitPriority = listOf<CardSuit>()
-    private var userPlayerCard = Card()
-    private var opponentPlayerCard = Card()
+    private lateinit var userPlayerCard : Card
+    private lateinit var opponentPlayerCard : Card
 
 
     override fun startGame(): GameStatus {
         round = 0
+        userPlayerCard = Card()
+        opponentPlayerCard = Card()
         suitPriority = cardShuffler.generateSuitPriority()
         clearDiscardPiles()
         assignCardsToPlayers()

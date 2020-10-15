@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateUI(screenState: MainViewState) {
-        when(screenState){
+        when (screenState) {
             is MainViewState.ShowGameStatus -> {
                 setDataToUI(screenState.gameStatus)
             }
@@ -67,12 +67,18 @@ class MainActivity : AppCompatActivity() {
             discard_val_tv.text = totalUsersDiscardPile.toString()
             opponents_card_tv.text = opponentCardPlayed.toLiteral()
             users_card_tv.text = userCardPlayed.toLiteral()
-            winner_tv.text = if (isUserWinnerOfRound) {
+            winner_tv.text = getWinRoundMessage(currentRound > 0, isUserWinnerOfRound)
+        }
+    }
+
+    private fun getWinRoundMessage(notFirstRound: Boolean, userWinner: Boolean): String {
+        return if (notFirstRound) {
+            if (userWinner) {
                 getString(R.string.user_winner)
             } else {
                 getString(R.string.user_lose)
             }
-        }
+        } else ""
     }
 
     private fun showFinishDialog(playerWinner: Boolean) {

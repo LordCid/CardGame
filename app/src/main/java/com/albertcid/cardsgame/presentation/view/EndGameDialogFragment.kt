@@ -25,7 +25,7 @@ class EndGameDialogFragment : DialogFragment() {
         return activity?.let {
             return AlertDialog.Builder(it)
                 .setMessage(messageRes)
-                .setPositiveButton(R.string.restart) { _, _ -> dismiss() }
+                .setPositiveButton(R.string.ok) { _, _ -> dismiss() }
                 .create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }

@@ -10,4 +10,5 @@
     <string name="pile_of_cards">Pile of cards:</string>
     <string name="win_game">Game Over: You win!</string>
     <string name="lose_game">Game Over:  You Lose</string>
+    <string name="ok" />
 </resources>
