@@ -6,7 +6,7 @@ import com.albertcid.cardsgame.domain.model.CardSuit
 data class GameStatus(
         val currentRound: Int,
         val isUserWinnerOfRound: Boolean,
-        val isUserWinnerOfGame: Boolean,
+        val isGameFinished: Boolean,
         val userCardPlayed: Card,
         val opponentCardPlayed: Card,
         val totalUsersCardPile: Int,

@@ -41,6 +41,7 @@ class MainViewModelTest {
         val resultGameStatus = GameStatus(
             currentRound = 1,
             isUserWinnerOfRound = false,
+            isGameFinished = false,
             userCardPlayed = Card(CardValue.TWO, CardSuit.HEARTS),
             opponentCardPlayed = Card(CardValue.KING, CardSuit.DIAMONDS),
             totalUsersCardPile = 25,
@@ -62,6 +63,7 @@ class MainViewModelTest {
         val resultGameStatus = GameStatus(
             currentRound = 2,
             isUserWinnerOfRound = false,
+            isGameFinished = false,
             userCardPlayed = Card(CardValue.TWO, CardSuit.HEARTS),
             opponentCardPlayed = Card(CardValue.KING, CardSuit.DIAMONDS),
             totalUsersCardPile = 24,
@@ -83,6 +85,7 @@ class MainViewModelTest {
         val restartGameStatus = GameStatus(
             currentRound = 0,
             isUserWinnerOfRound = false,
+            isGameFinished = false,
             userCardPlayed = Card(),
             opponentCardPlayed = Card(),
             totalUsersCardPile = 25,

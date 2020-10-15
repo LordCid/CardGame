@@ -28,6 +28,7 @@ class RestartGameUseCaseTest {
         val expected = GameStatus(
             currentRound = 0,
             isUserWinnerOfRound = false,
+            isGameFinished = false,
             userCardPlayed = Card(CardValue.TWO, CardSuit.HEARTS),
             opponentCardPlayed = Card(CardValue.KING, CardSuit.DIAMONDS),
             totalUsersCardPile = 25,

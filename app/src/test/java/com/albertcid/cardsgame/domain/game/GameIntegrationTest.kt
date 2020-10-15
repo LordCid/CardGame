@@ -5,7 +5,6 @@ import com.albertcid.cardsgame.domain.GameStatus
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
-import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import junit.framework.Assert.assertEquals
@@ -32,6 +31,7 @@ class GameIntegrationTest {
         val expected = GameStatus(
             currentRound = 0,
             isUserWinnerOfRound = false,
+            isGameFinished = false,
             userCardPlayed = Card(),
             opponentCardPlayed = Card(),
             totalUsersCardPile = 26,
@@ -55,6 +55,7 @@ class GameIntegrationTest {
         val expected = GameStatus(
             currentRound = 1,
             isUserWinnerOfRound = false,
+            isGameFinished = false,
             userCardPlayed = cardOne,
             opponentCardPlayed = cardTwo,
             totalUsersCardPile = 25,
@@ -76,6 +77,7 @@ class GameIntegrationTest {
         val expected = GameStatus(
             currentRound = 2,
             isUserWinnerOfRound = true,
+            isGameFinished = false,
             userCardPlayed = cardOne,
             opponentCardPlayed = cardTwo,
             totalUsersCardPile = 24,
@@ -89,14 +91,12 @@ class GameIntegrationTest {
     }
 
     private fun givenFirstRound(){
-        given(cardShuffler.assignCards()).willReturn(mutableSetOf())
         sut.startGame()
         userPlayer.cardPile.addAll(randomFullUserCardDeck)
         opponentPlayer.cardPile.addAll(randomOpponentFullCardDeck)
     }
 
     private fun givenSecondRound(){
-        given(cardShuffler.assignCards()).willReturn(mutableSetOf())
         sut.startGame()
         userPlayer.cardPile.addAll(randomFullUserCardDeck)
         opponentPlayer.cardPile.addAll(randomOpponentFullCardDeck)

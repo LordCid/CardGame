@@ -27,49 +27,6 @@ class CardShufflerTest {
     private val playerOne = mock<Player>()
     private val playerTwo = mock<Player>()
 
-    @Test
-    fun `Given full cards deck, must assign 26 cards to a player`() {
-        givenFullCardDeckToAssign()
-        val totalCardSizeEachPlayer = 26
-
-        val actual = sut.assignCards()
-
-        assertEquals(totalCardSizeEachPlayer, actual.size)
-    }
-
-    @Test
-    fun `Given half cards deck, must assign 26 cards to a player`() {
-        givenHalfCardDeckToAssign()
-        val totalCardSizeEachPlayer = 26
-
-        val actual = sut.assignCards()
-
-        assertEquals(totalCardSizeEachPlayer, actual.size)
-    }
-
-    @Test
-    fun `Given full cards deck, should remove the cards from them when assing to Player`() {
-        givenFullCardDeckToAssign()
-        val expected = (spadesSuit + diamondsSuit + heartsSuit + clubsSuit).toMutableSet()
-
-        val actual = sut.assignCards()
-        expected.removeAll( actual)
-
-        assertFalse(expected.containsAll(actual))
-    }
-
-
-    @Test
-    fun `Given half cards deck, should remove the cards from them when assing to Player`() {
-        givenHalfCardDeckToAssign()
-        val expected = (spadesSuit + diamondsSuit + heartsSuit + clubsSuit).toMutableSet()
-
-        val actual = sut.assignCards()
-        expected.removeAll( actual)
-
-        assertFalse(expected.containsAll(actual))
-    }
-
 
     @Test
     fun `Should assign same numbers of cards to each player`() {

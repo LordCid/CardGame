@@ -9,8 +9,6 @@ class CardShufflerImpl @Inject constructor(
 ) : CardShuffler {
     private var cardDeck : MutableSet<Card> = cardDeckBuilder.build() as MutableSet<Card>
 
-    private val totalCardsForPlayer = 26
-
     override fun generateSuitPriority(): List<CardSuit> {
         return listOf(
             CardSuit.SPADES,
@@ -18,11 +16,6 @@ class CardShufflerImpl @Inject constructor(
             CardSuit.HEARTS,
             CardSuit.CLUBS
         ).shuffled()
-    }
-
-    override fun assignCards(): MutableSet<Card> {
-        cardDeck.shuffled()
-        return cardDeck.chunked(totalCardsForPlayer)[0].toMutableSet()
     }
 
     override fun assignCardsToPlayers(playerOne: Player, playerTwo: Player) {

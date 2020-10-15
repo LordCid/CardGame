@@ -28,6 +28,7 @@ class PlayRoundUseCaseTest {
         val expected = GameStatus(
             currentRound = 1,
             isUserWinnerOfRound = false,
+            isGameFinished = false,
             userCardPlayed = Card(CardValue.TWO, CardSuit.HEARTS),
             opponentCardPlayed = Card(CardValue.KING, CardSuit.DIAMONDS),
             totalUsersCardPile = 25,
@@ -48,6 +49,7 @@ class PlayRoundUseCaseTest {
         val expected = GameStatus(
             currentRound = 2,
             isUserWinnerOfRound = true,
+            isGameFinished = false,
             userCardPlayed = Card(CardValue.FIVE, CardSuit.HEARTS),
             opponentCardPlayed = Card(CardValue.TWO, CardSuit.SPADES),
             totalUsersCardPile = 25,

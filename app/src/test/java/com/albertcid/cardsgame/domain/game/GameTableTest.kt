@@ -1,13 +1,11 @@
 package com.albertcid.cardsgame.domain.game
 
-import com.albertcid.cardsgame.diamondsSuit
-import com.albertcid.cardsgame.domain.GameStatus
+
 import com.albertcid.cardsgame.domain.model.Card
 import com.albertcid.cardsgame.domain.model.CardSuit
 import com.albertcid.cardsgame.domain.model.CardValue
 import com.albertcid.cardsgame.randomFullUserCardDeck
 import com.albertcid.cardsgame.randomOpponentFullCardDeck
-import com.albertcid.cardsgame.spadesSuit
 import com.nhaarman.mockitokotlin2.*
 import org.junit.Before
 
@@ -28,8 +26,6 @@ class GameTableTest {
 
     @Test
     fun `When start game round is set to zero`() {
-        val someCards = (spadesSuit + diamondsSuit).toMutableSet()
-        given(cardShuffler.assignCards()).willReturn(someCards)
         sut.round = 3
 
         sut.startGame()
@@ -46,8 +42,6 @@ class GameTableTest {
 
     @Test
     fun `When start game each player pilse cards is set empty`() {
-        val someCards = randomFullUserCardDeck
-        given(cardShuffler.assignCards()).willReturn(someCards)
         givenStartPileCards()
         givenStartDiscardCards()
 
@@ -99,8 +93,6 @@ class GameTableTest {
 
     @Test
     fun `Given player TWO card higher than player ONE, player TWO gains the cards`() {
-        val someCards = randomFullUserCardDeck
-        given(cardShuffler.assignCards()).willReturn(someCards)
         val cardOne = Card(CardValue.JOCKEY, CardSuit.DIAMONDS)
         val cardTwo = Card(CardValue.ACE, CardSuit.SPADES)
         givenPlayedRound(cardOne, cardTwo)
@@ -119,6 +111,7 @@ class GameTableTest {
         val cardOne = Card(CardValue.QUEEN, CardSuit.SPADES)
         val cardTwo = Card(CardValue.QUEEN, CardSuit.HEARTS)
         givenPlayedRound(cardOne, cardTwo)
+        sut.startGame()
 
         sut.playRound()
 
@@ -128,17 +121,17 @@ class GameTableTest {
 
     @Test
     fun `Given finish game conditions are matched and user player is winner, correct status is returned`() {
-        sut.round = 25
         given(userPlayer.getDiscardPileSize()).willReturn(22)
         given(opponentPlayer.getDiscardPileSize()).willReturn(2)
-        
+        val cardOne = Card()
+        val cardTwo = Card()
+        givenPlayedRound(cardOne, cardTwo)
 
+        sut.round = 25
         val gameStatus = sut.playRound()
 
-        assertTrue(gameStatus.isUserWinnerOfGame)
+        assertTrue(gameStatus.isGameFinished)
     }
-
-
 
     private fun givenPlayedRound(
         cardOne: Card,
@@ -146,7 +139,7 @@ class GameTableTest {
     ) {
         given(userPlayer.playCard()).willReturn(cardOne)
         given(opponentPlayer.playCard()).willReturn(cardTwo)
-        sut.startGame()
+//        sut.startGame()
     }
 
     private fun givenStartDiscardCards() {
