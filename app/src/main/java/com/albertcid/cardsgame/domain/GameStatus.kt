@@ -12,5 +12,5 @@ data class GameStatus(
         val totalUsersCardPile: Int,
         val totalUsersDiscardPile: Int,
         val totalOpponentDiscardPile: Int,
-        val suitPriority: List<CardSuit> = emptyList()
+        val suitPriority: List<CardSuit>
 )

@@ -33,7 +33,8 @@ class RestartGameUseCaseTest {
             opponentCardPlayed = Card(CardValue.KING, CardSuit.DIAMONDS),
             totalUsersCardPile = 25,
             totalUsersDiscardPile = 0,
-            totalOpponentDiscardPile = 0
+            totalOpponentDiscardPile = 0,
+            suitPriority = emptyList()
         )
         given(gameTable.startGame()).willReturn( expected )
 

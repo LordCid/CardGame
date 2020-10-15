@@ -33,7 +33,8 @@ class PlayRoundUseCaseTest {
             opponentCardPlayed = Card(CardValue.KING, CardSuit.DIAMONDS),
             totalUsersCardPile = 25,
             totalUsersDiscardPile = 0,
-            totalOpponentDiscardPile = 2
+            totalOpponentDiscardPile = 2,
+            suitPriority = emptyList()
         )
 
         given(gameTable.playRound()).willReturn( expected )
@@ -54,7 +55,8 @@ class PlayRoundUseCaseTest {
             opponentCardPlayed = Card(CardValue.TWO, CardSuit.SPADES),
             totalUsersCardPile = 25,
             totalUsersDiscardPile = 2,
-            totalOpponentDiscardPile = 0
+            totalOpponentDiscardPile = 0,
+            suitPriority = emptyList()
         )
 
         given(gameTable.playRound()).willReturn( expected )

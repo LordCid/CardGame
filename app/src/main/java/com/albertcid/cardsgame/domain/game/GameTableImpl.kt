@@ -86,7 +86,8 @@ class GameTableImpl @Inject constructor(
             opponentCardPlayed = opponentPlayerCard,
             totalUsersCardPile = userPlayer.getCardPileSize(),
             totalUsersDiscardPile = userPlayer.getDiscardPileSize(),
-            totalOpponentDiscardPile = opponentPlayer.getDiscardPileSize()
+            totalOpponentDiscardPile = opponentPlayer.getDiscardPileSize(),
+            suitPriority = suitPriority
         )
 
     }

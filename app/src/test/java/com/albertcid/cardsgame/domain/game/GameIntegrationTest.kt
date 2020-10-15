@@ -36,7 +36,8 @@ class GameIntegrationTest {
             opponentCardPlayed = Card(),
             totalUsersCardPile = 26,
             totalUsersDiscardPile = 0,
-            totalOpponentDiscardPile = 0
+            totalOpponentDiscardPile = 0,
+            suitPriority = emptyList()
         )
 
         val actual = sut.startGame()
@@ -60,7 +61,8 @@ class GameIntegrationTest {
             opponentCardPlayed = cardTwo,
             totalUsersCardPile = 25,
             totalUsersDiscardPile = 0,
-            totalOpponentDiscardPile = 2
+            totalOpponentDiscardPile = 2,
+            suitPriority = emptyList()
         )
 
         val actual = sut.playRound()
@@ -82,7 +84,8 @@ class GameIntegrationTest {
             opponentCardPlayed = cardTwo,
             totalUsersCardPile = 24,
             totalUsersDiscardPile = 2,
-            totalOpponentDiscardPile = 2
+            totalOpponentDiscardPile = 2,
+            suitPriority = emptyList()
         )
 
         val actual = sut.playRound()

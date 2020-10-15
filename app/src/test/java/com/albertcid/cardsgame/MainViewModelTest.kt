@@ -46,7 +46,8 @@ class MainViewModelTest {
             opponentCardPlayed = Card(CardValue.KING, CardSuit.DIAMONDS),
             totalUsersCardPile = 25,
             totalUsersDiscardPile = 0,
-            totalOpponentDiscardPile = 2
+            totalOpponentDiscardPile = 2,
+            suitPriority = emptyList()
         )
         given(playRoundUseCase.invoke()).willReturn(resultGameStatus)
 
@@ -68,7 +69,8 @@ class MainViewModelTest {
             opponentCardPlayed = Card(CardValue.KING, CardSuit.DIAMONDS),
             totalUsersCardPile = 24,
             totalUsersDiscardPile = 4,
-            totalOpponentDiscardPile = 6
+            totalOpponentDiscardPile = 6,
+            suitPriority = emptyList()
         )
         given(playRoundUseCase.invoke()).willReturn(resultGameStatus)
 
@@ -90,7 +92,8 @@ class MainViewModelTest {
             opponentCardPlayed = Card(),
             totalUsersCardPile = 25,
             totalUsersDiscardPile = 0,
-            totalOpponentDiscardPile = 0
+            totalOpponentDiscardPile = 0,
+            suitPriority = emptyList()
         )
         given(restartGameUseCase.invoke()).willReturn(restartGameStatus)
 
